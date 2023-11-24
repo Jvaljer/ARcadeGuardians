@@ -6,7 +6,7 @@ For this project to work, we had to design a bunch of different markers by ourse
 - Level 1 -> 8cm (longer than wider), using green tones and full lines
 - Archer Tower -> 6cm (squared), using blue tones and squares
 - Bomb Tower -> 6cm (squared), using red tones and crossed circles
-- Knight Tower -> 6cm (squared), using yellow tones and triangles
+- Knight Tower -> 6cm (squared), using grey tones and triangles
 - Range Upgrade -> 5cm (longer than wider), using pink tones and hexagones
 - Damage Upgrade -> 5cm (longer than wider), using purple tones and freeforms
 
