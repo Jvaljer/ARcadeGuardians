@@ -5,6 +5,8 @@ using UnityEngine;
 public class Game : MonoBehaviour{
     private GameObject level;
     public void DetectLevel(){
-        //here we either wanna set the game as the one detected OR ask for the player to remove one of the game markers
+        //here we have 2 choices :
+            //no level is actually set so we simply ask the player to validate the one (using phone interface maybe ?)
+            //one level is actually set up so we wanna ignore this one and throw the 3d object away.
     }
 }

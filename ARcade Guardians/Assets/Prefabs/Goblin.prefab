@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7617165214249793428}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 3806339249288007642}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,9 +201,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4339907014206610688}
   - component: {fileID: 2757617810244865724}
+  - component: {fileID: 1929882599552628556}
   m_Layer: 0
   m_Name: Goblin
-  m_TagString: Untagged
+  m_TagString: goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,6 +241,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1929882599552628556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2524027050568902329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a759264f4491d1a4a935eceeaaea7e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  way_points: []
+  speed: 0.5
 --- !u!1 &2562697872959900520
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +269,7 @@ GameObject:
   - component: {fileID: 7335259402757594618}
   m_Layer: 0
   m_Name: Arm (1)
-  m_TagString: Untagged
+  m_TagString: goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,7 +364,7 @@ GameObject:
   - component: {fileID: 3583476326004288133}
   m_Layer: 0
   m_Name: Arm
-  m_TagString: Untagged
+  m_TagString: goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -441,7 +456,7 @@ GameObject:
   - component: {fileID: 9102579381493259063}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,7 +493,7 @@ GameObject:
   - component: {fileID: 9019528759791541711}
   m_Layer: 0
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: goblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range_area: {fileID: 3253657445503353155}
+  t_type: bomber
 --- !u!1 &1414316806309673733
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 2448854156145666278}
+  init: 0
 --- !u!1 &5119577894182859595
 GameObject:
   m_ObjectHideFlags: 0

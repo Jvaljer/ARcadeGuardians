@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range_area: {fileID: 1170503538699365647}
+  t_type: archer
 --- !u!1 &769060956893828823
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 4389724628018545591}
+  init: 0
 --- !u!1 &1767264467266342862
 GameObject:
   m_ObjectHideFlags: 0

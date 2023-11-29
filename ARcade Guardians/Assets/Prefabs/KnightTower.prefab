@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: -6951529855649024252}
+  init: 0
 --- !u!1 &1500443946473081740
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range_area: {fileID: 1317861819912993990}
+  t_type: casern
 --- !u!1 &9102934574579068264
 GameObject:
   m_ObjectHideFlags: 0

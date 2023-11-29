@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour{
     public GameObject range_area;
+    public string t_type; 
+
     //predicates
     private bool setup;
 
