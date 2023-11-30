@@ -19,6 +19,16 @@ public class TowerRange : MonoBehaviour{
             }
         }
     }
+
+    public void OnTriggerStay(Collider other){
+        if(init){
+            if(!already_shot){
+                tower.FireProjectileAt(other);
+                already_shot = true;
+            }
+        }
+    }
+
     public void OnTriggerExit(Collider other){
         if(init){
             Debug.Log("SOMETHING EXITED");

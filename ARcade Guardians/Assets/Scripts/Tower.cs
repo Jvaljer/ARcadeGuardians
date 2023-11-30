@@ -26,15 +26,18 @@ public class Tower : MonoBehaviour{
 
     private IEnumerator Reload(GameObject range){
         Debug.Log("just shot now reloading...");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         Debug.Log("Finished reloading");
         range.GetComponent<TowerRange>().Reload();
     }
     private IEnumerator Shoot(GameObject projectile, GameObject target){
-        while(!projectile.GetComponent<Projectile>().ReachedTarget()){ //yet this returns error tho
-            //must implement 
-            // here we wanna make the target go in the direction of the target (just a bit)
-            yield return new WaitForSeconds(0.1f);
+        Projectile script = projectile.GetComponent<Projectile>();
+        while(!script.ReachedTarget()){
+            // Calculate the direction vector from the projectile to the target
+            Vector3 dir = (target.transform.position - projectile.transform.position).normalized;
+            // Update the projectile's position based on the direction
+            projectile.transform.position += dir * script.Speed() * Time.deltaTime;
+            yield return null; //new WaitForSeconds(0.1f)
         }
     }
 }
