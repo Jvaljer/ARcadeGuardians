@@ -4,16 +4,34 @@ using UnityEngine;
 
 public class TowerRange : MonoBehaviour{
     public Tower tower;
-    public bool init = false;
+    private bool init = true;
+    private bool already_shot = false;
 
     public void OnTriggerEnter(Collider other){
         if(init){
-            Debug.Log("something entered the area -> ATTACK if ennemy");
+            Debug.Log("SOMETHING ENTERING");
+            if(!already_shot){
+                if(other.tag=="goblin"){
+                    Debug.Log("     -> It's a GOBLIN");
+                    tower.FireProjectileAt(other);
+                    already_shot = true;
+                }
+            }
         }
     }
     public void OnTriggerExit(Collider other){
         if(init){
-            Debug.Log("something exited the area -> SWITCH focus if still ennemies");
+            Debug.Log("SOMETHING EXITED");
         }
+    }
+
+    public void Init(){
+        init = true;
+    }
+    public void Stop(){
+        init = false;
+    }
+    public void Reload(){
+        already_shot = false;
     }
 }
