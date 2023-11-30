@@ -7,6 +7,7 @@ public class Goblin_ : MonoBehaviour{
     public float speed;
     private int index;
     private bool run = false;
+    private int health_point;
 
     void Update(){
         if(run){
@@ -26,11 +27,18 @@ public class Goblin_ : MonoBehaviour{
     public void Launch(){
         run = true;
         index = 0;
+        health_point = 10;
     }
     public void SetWayPoints(Transform way){
         way_points = new List<Transform>();
         foreach (Transform point in way){
             way_points.Add(point);
+        }
+    }
+    public void TakeDamage(int d){
+        health_point -= d;
+        if(health_point<=0){
+            Destroy(gameObject);
         }
     }
 }

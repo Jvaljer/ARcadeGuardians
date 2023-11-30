@@ -14,7 +14,8 @@ public class Projectile : MonoBehaviour{
     public void OnTriggerEnter(Collider other){
         if(other.tag=="goblin"){
             reached = true;
-            Destroy(other.transform.parent.parent.gameObject); //wanna replace that with damages instead
+            //Destroy(other.transform.parent.parent.gameObject); //wanna replace that with damages instead
+            other.transform.parent.parent.gameObject.GetComponent<Goblin_>().TakeDamage(4);
             Destroy(gameObject);
         }
     }

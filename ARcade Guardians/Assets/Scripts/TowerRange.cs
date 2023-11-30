@@ -6,6 +6,7 @@ public class TowerRange : MonoBehaviour{
     public Tower tower;
     private bool init = true;
     private bool already_shot = false;
+    private bool hold_max = false;
 
     public void OnTriggerEnter(Collider other){
         if(init){
@@ -15,6 +16,15 @@ public class TowerRange : MonoBehaviour{
                     Debug.Log("     -> It's a GOBLIN");
                     tower.FireProjectileAt(other);
                     already_shot = true;
+                }
+            }
+            if(!hold_max){
+                if(other.tag=="atk-upgrade"){
+                    tower.AddAtkUpgrade();
+                } else if(other.tag=="rng-upgrade"){
+                    tower.AddRngUpgrade();
+                } else if(other.tag=="custom-upgrade"){
+                    tower.AddCustomUpgrade(other.transform.parent.gameObject.GetComponent<Upgrade>().Type());
                 }
             }
         }

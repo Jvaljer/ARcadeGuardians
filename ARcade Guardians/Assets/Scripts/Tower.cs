@@ -40,4 +40,15 @@ public class Tower : MonoBehaviour{
             yield return null; //new WaitForSeconds(0.1f)
         }
     }
+
+    //upgrades method
+    public void AddAtkUpgrade(){
+        //must implement
+    }
+    public void AddRngUpgrade(){
+        //must implement
+    }
+    public void AddCustomUpgrade(string str){
+        //must implement
+    }
 }

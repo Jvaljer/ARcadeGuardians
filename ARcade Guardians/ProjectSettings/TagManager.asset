@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LevelStart
   - goblin
+  - upgrade
   layers:
   - Default
   - TransparentFX
