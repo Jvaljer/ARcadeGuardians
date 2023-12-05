@@ -13,3 +13,8 @@ For this project to work, we had to design a bunch of different markers by ourse
 ## Markers creation
 In order to properly create the markers, we went on this website made by vuforia, and followed the instructions.
 https://developer.vuforia.com/library/objects/best-practices-designing-and-developing-image-based-targets
+
+## Interesting Features
+Beside basic Vuforia markers detection, and the simple action of displaying a virtual object that interacts with other virtual objects based on one tangible, here are some features we found cool to add :
+- Upgrades Combination -> User can clip multipls single upgrades together in order to create a new marker that represents an improved upgrade
+- Spells that could be thrown on the battlefield -> Dedicated markers that triggers a spell when touching the board's surface.

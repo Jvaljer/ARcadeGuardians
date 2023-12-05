@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour{
     public float life = 5f;
     private bool reached = false;
     private float speed = 1f;
+    private int damage;
 
     void Awake(){
         Destroy(gameObject, life);
@@ -14,9 +15,8 @@ public class Projectile : MonoBehaviour{
     public void OnTriggerEnter(Collider other){
         if(other.tag=="goblin"){
             reached = true;
-            //Destroy(other.transform.parent.parent.gameObject); //wanna replace that with damages instead
-            other.transform.parent.parent.gameObject.GetComponent<Goblin_>().TakeDamage(4);
-            Destroy(gameObject);
+            other.transform.parent.parent.gameObject.GetComponent<Goblin_>().TakeDamage(damage);
+            //Destroy(gameObject);
         }
     }
 
@@ -25,5 +25,9 @@ public class Projectile : MonoBehaviour{
     }
     public float Speed(){
         return speed;
+    }
+
+    public void SetDamage(int d){
+        damage = d;
     }
 }

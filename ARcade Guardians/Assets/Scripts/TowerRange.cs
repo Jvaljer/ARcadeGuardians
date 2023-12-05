@@ -21,10 +21,13 @@ public class TowerRange : MonoBehaviour{
             if(!hold_max){
                 if(other.tag=="atk-upgrade"){
                     tower.AddAtkUpgrade();
+                    hold_max = tower.HoldMaxUpgrade();
                 } else if(other.tag=="rng-upgrade"){
                     tower.AddRngUpgrade();
+                    hold_max = tower.HoldMaxUpgrade();
                 } else if(other.tag=="custom-upgrade"){
                     tower.AddCustomUpgrade(other.transform.parent.gameObject.GetComponent<Upgrade>().Type());
+                    hold_max = tower.HoldMaxUpgrade();
                 }
             }
         }
@@ -33,8 +36,19 @@ public class TowerRange : MonoBehaviour{
     public void OnTriggerStay(Collider other){
         if(init){
             if(!already_shot){
-                tower.FireProjectileAt(other);
-                already_shot = true;
+                if(other.tag=="goblin"){
+                    tower.FireProjectileAt(other);
+                    already_shot = true;
+                }
+            }
+            if(!hold_max){
+                if(other.tag=="atk-upgrade"){
+                    tower.AddAtkUpgrade();
+                } else if(other.tag=="rng-upgrade"){
+                    tower.AddRngUpgrade();
+                } else if(other.tag=="custom-upgrade"){
+                    tower.AddCustomUpgrade(other.transform.parent.gameObject.GetComponent<Upgrade>().Type());
+                }
             }
         }
     }

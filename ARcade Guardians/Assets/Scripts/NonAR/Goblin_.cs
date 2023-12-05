@@ -27,7 +27,7 @@ public class Goblin_ : MonoBehaviour{
     public void Launch(){
         run = true;
         index = 0;
-        health_point = 10;
+        health_point = 30;
     }
     public void SetWayPoints(Transform way){
         way_points = new List<Transform>();
