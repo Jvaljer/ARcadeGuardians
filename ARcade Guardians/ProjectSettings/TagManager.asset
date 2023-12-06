@@ -8,7 +8,7 @@ TagManager:
   - goblin
   - upgrade
   - atk-upgrade
-  - rng-upgrade
+  - spd-upgrade
   layers:
   - Default
   - TransparentFX

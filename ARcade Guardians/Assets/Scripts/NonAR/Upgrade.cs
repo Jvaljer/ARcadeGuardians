@@ -11,6 +11,7 @@ public class Upgrade : MonoBehaviour{
     public float speed = 1f;
 
     private void Update(){
+        //testing without AR
         if(Input.GetKey(KeyCode.RightArrow)){
             transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
         }

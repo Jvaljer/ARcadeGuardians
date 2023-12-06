@@ -20,13 +20,10 @@ public class TowerRange : MonoBehaviour{
             }
             if(!hold_max){
                 if(other.tag=="atk-upgrade"){
-                    tower.AddAtkUpgrade();
+                    tower.TryAddAtkUp();
                     hold_max = tower.HoldMaxUpgrade();
-                } else if(other.tag=="rng-upgrade"){
-                    tower.AddRngUpgrade();
-                    hold_max = tower.HoldMaxUpgrade();
-                } else if(other.tag=="custom-upgrade"){
-                    tower.AddCustomUpgrade(other.transform.parent.gameObject.GetComponent<Upgrade>().Type());
+                } else if(other.tag=="spd-upgrade"){
+                    tower.TryAddSpdUp();
                     hold_max = tower.HoldMaxUpgrade();
                 }
             }
@@ -41,21 +38,16 @@ public class TowerRange : MonoBehaviour{
                     already_shot = true;
                 }
             }
-            if(!hold_max){
-                if(other.tag=="atk-upgrade"){
-                    tower.AddAtkUpgrade();
-                } else if(other.tag=="rng-upgrade"){
-                    tower.AddRngUpgrade();
-                } else if(other.tag=="custom-upgrade"){
-                    tower.AddCustomUpgrade(other.transform.parent.gameObject.GetComponent<Upgrade>().Type());
-                }
-            }
         }
     }
 
     public void OnTriggerExit(Collider other){
         if(init){
-            Debug.Log("SOMETHING EXITED");
+            if(other.tag=="atk-upgrade"){
+                tower.RemoveAtkUpgrade();
+            } else if(other.tag=="spd-upgrade"){
+                tower.RemoveSpdUpgrade();
+            }
         }
     }
 

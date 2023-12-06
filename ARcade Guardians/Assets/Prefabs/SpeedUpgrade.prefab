@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 1433117590985322534}
   - component: {fileID: 2789289615533873936}
   m_Layer: 0
-  m_Name: DefUpgrade
+  m_Name: SpeedUpgrade
   m_TagString: rng-upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
