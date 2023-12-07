@@ -10,6 +10,7 @@ TagManager:
   - atk-upgrade
   - spd-upgrade
   - script-holder
+  - level
   layers:
   - Default
   - TransparentFX

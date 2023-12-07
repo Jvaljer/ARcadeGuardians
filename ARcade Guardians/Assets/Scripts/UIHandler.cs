@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour{
     //components
+    public GameObject game;
     public Text setting_label;
     //variables
     private string difficulty = "___";
@@ -30,16 +31,12 @@ public class UIHandler : MonoBehaviour{
         mode = "test";
         SetIndicator();
     }
-    public void SetMode3D(){
-        mode = "3d";
-        SetIndicator();
-    }
     public void SetModeAR(){
         mode = "ar";
         SetIndicator();
     }
 
     public void Launch(){
-        //must implement
+        game.GetComponent<Game_>().Initialize(mode);
     }
 }

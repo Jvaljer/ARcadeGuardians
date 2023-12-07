@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Game_ : MonoBehaviour {
+    public GameObject archer_test;
+    public GameObject bomber_test;
     public GameObject goblin_prefab;
     public GameObject level;
     public List<GameObject> towers;
@@ -11,22 +13,50 @@ public class Game_ : MonoBehaviour {
     private int difficulty_level = 0;
     private int base_hp = 45;
     private int player_gold;
+    private bool setup;
+    private string gmode = "";
 
+
+    public void Initialize(string mode){
+        Debug.Log("Game Showing up");
+        if(mode=="test"){
+            gmode = "t";
+            level.SetActive(true);
+        setup = true;
+        } else if(mode=="ar"){
+            gmode = "ar";
+            //must implement
+        }
+    }
     void Start(){
-        Debug.Log("Game Start");
+        Debug.Log("Game Initializes in Background");
+        level = GameObject.FindGameObjectsWithTag("level")[0];
         level_start = GameObject.FindGameObjectsWithTag("LevelStart")[0].transform.position;
-        player_gold = 500;
+        level.SetActive(false);
+        setup = false;
     }
     void Update(){
-        if (Input.GetKeyDown("space")){
-            /*
-            Debug.Log("LAUNCHING A GOBLIN");
-            GameObject goblin = Instantiate(goblin_prefab, level_start, Quaternion.identity);
-            goblin.GetComponent<Goblin_>().SetWayPoints(level_way.transform);
-            goblin.GetComponent<Goblin_>().Launch();
-            */
-            Debug.Log("Launching a Wave !");
-            LaunchWave(difficulty_level);
+        if(setup){
+            if(gmode=="t"){
+                if (Input.GetKeyDown(KeyCode.A)){
+                    Debug.Log("Try Placing an Archer");
+                    TryAddArcher(archer_test);
+                }
+                if (Input.GetKeyDown(KeyCode.B)){
+                    Debug.Log("Try Placing a Bomber");
+                    TryAddBomber(bomber_test);
+                }
+                if (Input.GetKeyDown("space")){
+                    /*
+                    Debug.Log("LAUNCHING A GOBLIN");
+                    GameObject goblin = Instantiate(goblin_prefab, level_start, Quaternion.identity);
+                    goblin.GetComponent<Goblin_>().SetWayPoints(level_way.transform);
+                    goblin.GetComponent<Goblin_>().Launch();
+                    */
+                    Debug.Log("Launching a Wave !");
+                    LaunchWave(difficulty_level);
+                }
+            }
         }
     }
     public int PlayerGold(){
@@ -45,10 +75,10 @@ public class Game_ : MonoBehaviour {
         //must implement
     }
 
-    public void TryAddArcher(){
+    public void TryAddArcher(GameObject tower){
         //must implement
     }
-    public void TryAddBomber(){
+    public void TryAddBomber(GameObject tower){
         //must implement
     }
     public void PlayerPay(int cost){
