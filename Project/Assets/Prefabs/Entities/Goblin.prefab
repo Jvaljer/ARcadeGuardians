@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34734f0af7c4e1c4c98b5688626ee22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  way_points: []
 --- !u!1 &2562697872959900520
 GameObject:
   m_ObjectHideFlags: 0

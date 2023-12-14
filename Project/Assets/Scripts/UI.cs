@@ -7,6 +7,9 @@ public class UI : MonoBehaviour{
     //components
     public Game game;
     public Text setting_label;
+    public GameObject settings;
+    public GameObject ingame;
+    public GameObject infopane;
     public GameObject level_popup;
 
     //variables
@@ -39,15 +42,20 @@ public class UI : MonoBehaviour{
         if(!level_set){
             final_level = level;
         }
+        infopane.SetActive(true);
         level_popup.SetActive(true);
     }
     public void ValidateLevel(){
         level_set = true;
+        infopane.SetActive(false);
         level_popup.SetActive(false);
         game.ValidateLevel(final_level);
     }
 
     public void Launch(){
-        game.Initialize();
+        Debug.Log("[----------UI.LAUNCH----------]");
+        game.Initialize(difficulty);
+        settings.SetActive(false);
+        ingame.SetActive(true);
     }
 }

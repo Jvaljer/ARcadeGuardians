@@ -988,7 +988,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 0}
-  setting_label: {fileID: 760984652017953166}
+  setting_label: {fileID: 760984652560642990}
+  settings: {fileID: 760984651428610955}
+  ingame: {fileID: 760984650729280746}
+  infopane: {fileID: 6678710069327376677}
+  level_popup: {fileID: 6049318922068203123}
 --- !u!1 &760984652286324884
 GameObject:
   m_ObjectHideFlags: 0
