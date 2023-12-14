@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="Level" size="0.100000 0.074738" />
+    <ImageTarget name="Bomber" size="0.070000 0.069785" />
+    <ImageTarget name="Archer" size="0.070000 0.070000" />
+    <ImageTarget name="FireBall" size="0.050000 0.055193" />
+    <ImageTarget name="Arrows" size="0.050000 0.061314" />
+  </Tracking>
+</QCARConfig>
