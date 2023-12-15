@@ -108,7 +108,14 @@ public class Wave : MonoBehaviour{
             next.GetComponent<Ennemy>().Launch();
             yield return new WaitForSeconds(nxt_ennemy);
         }
+        //HERE IS THE PROBLEM : 
+        // ennemies aren't put INSIDE of the level, maybe should try actually freezing
+        /*GameObject next;
+        next = Instantiate(goblin, spawn.position, Quaternion.identity);
+        next.GetComponent<Ennemy>().SetWayPoints(way);
+        next.GetComponent<Ennemy>().Launch();
         game.EndWave();
         queue.Clear();
+        yield return new WaitForSeconds(5f);*/
     }
 }

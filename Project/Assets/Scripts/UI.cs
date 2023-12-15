@@ -22,8 +22,8 @@ public class UI : MonoBehaviour{
     private bool level_set = false;
 
     //game attributes
-    private GameObject tmp_level;
-    private GameObject final_level;
+    private GameObject level_marker;
+    private GameObject marker_go;
     private GameObject current_tower;
     private bool wave_running = false;
 
@@ -45,9 +45,9 @@ public class UI : MonoBehaviour{
     }
 
     //Detecting methods
-    public void DetectLevel(GameObject level){
+    public void DetectLevel(GameObject marker){
         if(!level_set){
-            tmp_level = level;
+            level_marker = marker;
         }
         infopane.SetActive(true);
         level_popup.SetActive(true);
@@ -62,7 +62,7 @@ public class UI : MonoBehaviour{
     public void IgnoreLevel(){
         infopane.SetActive(false);
         level_popup.SetActive(false);
-        tmp_level = null; //wanna destroy or set to null ???
+        level_marker = null; //wanna destroy or set to null ???
     }
     public void IgnoreTower(){
         infopane.SetActive(false);
@@ -75,8 +75,8 @@ public class UI : MonoBehaviour{
         level_set = true;
         infopane.SetActive(false);
         level_popup.SetActive(false);
-        final_level = tmp_level;
-        game.ValidateLevel(final_level);
+        marker_go = level_marker;
+        game.ValidateLevel(marker_go);
     }
     public void ValidateTower(){
         infopane.SetActive(false);

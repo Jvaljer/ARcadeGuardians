@@ -10,6 +10,9 @@ public class Game : MonoBehaviour{
     private GameObject level;
     private bool ingame_ui = false;
 
+    //prefabs
+    public GameObject level_prefab;
+
     //game variables
     private bool set = false;
     private string difficulty = "";
@@ -115,8 +118,21 @@ public class Game : MonoBehaviour{
     }
 
     //UI Validation Handling
-    public void ValidateLevel(GameObject go_level){
-        level = go_level;
+    public void ValidateLevel(GameObject marker){
+        Vector3 pos = marker.transform.position;
+        Quaternion rota = marker.transform.rotation;
+        Vector3 scale = new Vector3(0.015f,0.15f,0.015f);
+
+        Debug.Log("position has been validated");
+
+        Destroy(marker);
+        Debug.Log("Destroyed marker");
+
+        level = Instantiate(level_prefab, pos, rota);
+        Debug.Log("Instantiated object");
+        level.transform.localScale = scale;
+        Debug.Log("scaled object");
+
         GameObject.FindGameObjectWithTag("level-end").GetComponent<EndCollision>().SetMultiplicator(difficulty);
         way_points = GameObject.FindGameObjectWithTag("path").transform;
         spawn_point = GameObject.FindGameObjectWithTag("spawn").transform;
