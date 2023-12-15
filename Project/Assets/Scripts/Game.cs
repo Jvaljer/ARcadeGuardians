@@ -6,6 +6,7 @@ public class Game : MonoBehaviour{
     //linkings
     public GameObject ui;
     private GameObject level;
+    private bool ingame_ui = false;
 
     //game variables
     private bool set = false;
@@ -13,17 +14,34 @@ public class Game : MonoBehaviour{
     private List<GameObject> towers;
     private int archer_cost = 200;
 
+    //vuforia handling
+    private bool lock_towers = false;
+
     //player stuff
     private float base_hp = -1f;
     private int golds = 0;
+
+    //wave handling
+    private Wave current_wave;
+    private int wave_cnt = 0;
+    private bool wave_just_ended = false;
 
     //Update Method -> Testing the crucial predicates on each frames
     private void Update(){
         if(set){
             if(base_hp<=0){
-                //must implement
+                //loosing condition
             }
-
+            if(ingame_ui){
+                //refresh the ui texts of golds & waves
+                if(wave_just_ended){
+                    ui.GetComponent<UI>().SetWaves(wave_cnt);
+                    wave_just_ended = false;
+                }
+            }
+            if(wave_cnt>10){
+                //winning condition
+            }
             //must implement
         }
     }
@@ -32,14 +50,22 @@ public class Game : MonoBehaviour{
     public void EnnemyReachedEnd(float damage){
         base_hp -= damage;
     }
-
+    public void LaunchWave(){
+        //we wanna start a coroutine for the wave's progression
+        lock_towers = true;
+        current_wave = new Wave(wave_cnt, difficulty);
+        current_wave.Start();
+    }
+    public void EndWave(){
+        wave_just_ended = true;
+        wave_cnt++;
+    }
 
     //Settings Handling
     public void Initialize(string diff){
         difficulty = diff;
         towers = new List<GameObject>();
         golds = 500;
-
         switch(difficulty){
             case "easy":
                 base_hp = 50f;
@@ -54,6 +80,9 @@ public class Game : MonoBehaviour{
                 Debug.Log("%%%%%  ERROR PARSING DIFFICULTY  %%%%%");
                 break;
         }
+
+        ui.GetComponent<UI>().SetGolds(golds);
+        ui.GetComponent<UI>().SetWaves(0);
     }
 
 
@@ -62,6 +91,10 @@ public class Game : MonoBehaviour{
         ui.GetComponent<UI>().DetectLevel(level);
     }
     public void DetectTower(GameObject tower){
+        if(lock_towers){
+            tower.SetActive(false);
+            return;
+        }
         switch(tower.GetComponent<Tower>().typ){
             case "archer":
                 if(golds<=archer_cost){
@@ -86,4 +119,7 @@ public class Game : MonoBehaviour{
         towers.Add(go_tower);
         towers[towers.Count-1].GetComponent<Tower>().Setup();
     }
+
+    //Some Setters
+    public void SetIngameUI(bool b){ ingame_ui = b; }
 }
