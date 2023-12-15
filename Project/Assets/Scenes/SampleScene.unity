@@ -216,6 +216,209 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &742566431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 742566435}
+  - component: {fileID: 742566434}
+  - component: {fileID: 742566433}
+  - component: {fileID: 742566432}
+  m_Layer: 0
+  m_Name: Archer Marker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &742566432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742566431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 742566434}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: Archer
+  mDatasetName: Vuforia/ARcaneGuardians.xml
+  mCastedBehaviour: {fileID: 742566434}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
+--- !u!114 &742566433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742566431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatusFilter: 1
+  UsePoseSmoothing: 0
+  AnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 3.3333333
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 3.3333333
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  OnTargetFound:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1566397257}
+        m_TargetAssemblyTypeName: Game, Assembly-CSharp
+        m_MethodName: DetectTower
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 742922265}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &742566434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742566431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1631628248, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreviewVisible: 1
+  RuntimeOcclusion: 0
+  RuntimeCollider: 0
+  mTrackableName: Archer
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/ARcaneGuardians.xml
+  mAspectRatio: 1
+  mImageTargetType: 0
+  mWidth: 0.07
+  mHeight: 0.07
+  mRuntimeTexture: {fileID: 0}
+  mMotionHint: 1
+  mTrackingOptimization: 0
+  mTrackingOptimizationNeedsUpgrade: 0
+  mPreview: {fileID: 742566432}
+--- !u!4 &742566435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742566431}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 742922264}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &742922263
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 742566435}
+    m_Modifications:
+    - target: {fileID: 385413893826048376, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_Name
+      value: ArcherTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+--- !u!4 &742922264 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5375816926639332310, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+  m_PrefabInstance: {fileID: 742922263}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &742922265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 385413893826048376, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
+  m_PrefabInstance: {fileID: 742922263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &789416964
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +553,7 @@ Transform:
   m_Children:
   - {fileID: 152351395985378048}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1566397251
 GameObject:
@@ -541,7 +744,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &152351395985378047
 PrefabInstance:
@@ -636,6 +839,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 760984650894784246, guid: 239f798d97d987948b7657b8033a5498, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 263
+      objectReference: {fileID: 0}
+    - target: {fileID: 760984651092604909, guid: 239f798d97d987948b7657b8033a5498, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 760984651428610955, guid: 239f798d97d987948b7657b8033a5498, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -658,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 760984652172188065, guid: 239f798d97d987948b7657b8033a5498, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 760984652172188065, guid: 239f798d97d987948b7657b8033a5498, type: 3}
       propertyPath: m_AnchorMax.x
@@ -731,6 +942,18 @@ PrefabInstance:
     - target: {fileID: 760984652172188065, guid: 239f798d97d987948b7657b8033a5498, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 760984652479477856, guid: 239f798d97d987948b7657b8033a5498, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 41.126
+      objectReference: {fileID: 0}
+    - target: {fileID: 760984652479477856, guid: 239f798d97d987948b7657b8033a5498, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -29.437012
+      objectReference: {fileID: 0}
+    - target: {fileID: 760984652560642990, guid: 239f798d97d987948b7657b8033a5498, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2559872645580475937, guid: 239f798d97d987948b7657b8033a5498, type: 3}
       propertyPath: m_RootOrder

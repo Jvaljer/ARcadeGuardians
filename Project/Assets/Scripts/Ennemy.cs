@@ -7,7 +7,7 @@ public class Ennemy : MonoBehaviour{
     private float speed;
     private int index;
     private bool run = false;
-    private int health_point;
+    private float health_point;
 
     void Update(){
         if(run){
@@ -28,11 +28,11 @@ public class Ennemy : MonoBehaviour{
         index = 0;
         switch(category){
             case "goblin":
-                health_point = 30;
+                health_point = 30f;
                 speed = 3f;
                 break;
             case "wolf":
-                health_point = 18;
+                health_point = 18f;
                 speed = 4.5f;
                 break;
             default:
@@ -48,7 +48,7 @@ public class Ennemy : MonoBehaviour{
             way_points.Add(point);
         }
     }
-    public void TakeDamage(int d){
+    public void TakeDamage(float d){
         health_point -= d;
         if(health_point<=0){
             Destroy(gameObject);

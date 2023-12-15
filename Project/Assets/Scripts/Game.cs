@@ -10,9 +10,12 @@ public class Game : MonoBehaviour{
     //game variables
     private bool set = false;
     private string difficulty = "";
+    private List<GameObject> towers;
+    private int archer_cost = 200;
 
     //player stuff
     private float base_hp = -1f;
+    private int golds = 0;
 
     //Update Method -> Testing the crucial predicates on each frames
     private void Update(){
@@ -34,7 +37,8 @@ public class Game : MonoBehaviour{
     //Settings Handling
     public void Initialize(string diff){
         difficulty = diff;
-        //must fully implement 
+        towers = new List<GameObject>();
+        golds = 500;
 
         switch(difficulty){
             case "easy":
@@ -57,8 +61,29 @@ public class Game : MonoBehaviour{
     public void DetectLevel(GameObject level){
         ui.GetComponent<UI>().DetectLevel(level);
     }
+    public void DetectTower(GameObject tower){
+        switch(tower.GetComponent<Tower>().typ){
+            case "archer":
+                if(golds<=archer_cost){
+                    tower.SetActive(false);
+                    return;
+                }
+                break;
+            case "bomber":
+                break;
+            default:
+                break;
+        }
+        ui.GetComponent<UI>().DetectTower(tower);
+    }
+
+    //UI Validation Handling
     public void ValidateLevel(GameObject go_level){
         level = go_level;
         GameObject.FindGameObjectWithTag("level-end").GetComponent<EndCollision>().SetMultiplicator(difficulty);
+    }
+    public void ValidateTower(GameObject go_tower){
+        towers.Add(go_tower);
+        towers[towers.Count-1].GetComponent<Tower>().Setup();
     }
 }

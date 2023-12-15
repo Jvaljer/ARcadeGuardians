@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5375816926639332310}
+  - component: {fileID: 4796436780416761458}
   m_Layer: 0
   m_Name: ArcherTower
   m_TagString: Untagged
@@ -31,9 +32,26 @@ Transform:
   - {fileID: 4197998955515198351}
   - {fileID: 8282507190350199273}
   - {fileID: 7398414225828525696}
+  - {fileID: 4872558234608450534}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4796436780416761458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385413893826048376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85323dcbde4f16e4aa7de26810480135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: {fileID: 1170503538699365647}
+  launch_point: {fileID: 4872558234608450534}
+  projectile_prefab: {fileID: 8785208512009593403, guid: 9300441703b0f15459fcf35252528e8a, type: 3}
+  typ: archer
 --- !u!1 &769060956893828823
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +159,7 @@ GameObject:
   - component: {fileID: 6079699948041902709}
   - component: {fileID: 1928247774807078476}
   - component: {fileID: 2870835772629998417}
+  - component: {fileID: 8602353058598578933}
   m_Layer: 0
   m_Name: Range
   m_TagString: Untagged
@@ -225,6 +244,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &8602353058598578933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170503538699365647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7800631082d913f46a2cee7c94cead56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1767264467266342862
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +674,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7028563546719845257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4872558234608450534}
+  m_Layer: 0
+  m_Name: Firing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4872558234608450534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028563546719845257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5375816926639332310}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7380874785343713120
 GameObject:
   m_ObjectHideFlags: 0

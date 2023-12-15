@@ -11,6 +11,7 @@ public class UI : MonoBehaviour{
     public GameObject ingame;
     public GameObject infopane;
     public GameObject level_popup;
+    public GameObject tower_popup;
 
     //variables
     private string difficulty = "___";
@@ -20,6 +21,7 @@ public class UI : MonoBehaviour{
 
     //game attributes
     private GameObject final_level;
+    private GameObject current_tower;
 
     //all methods
     private void SetIndicator(){
@@ -38,6 +40,7 @@ public class UI : MonoBehaviour{
         SetIndicator();
     }
 
+    //Detecting methods
     public void DetectLevel(GameObject level){
         if(!level_set){
             final_level = level;
@@ -45,11 +48,23 @@ public class UI : MonoBehaviour{
         infopane.SetActive(true);
         level_popup.SetActive(true);
     }
+    public void DetectTower(GameObject tower){
+        current_tower = tower;
+        infopane.SetActive(true);
+        tower_popup.SetActive(true);
+    }
+
+    //Validating Methods
     public void ValidateLevel(){
         level_set = true;
         infopane.SetActive(false);
         level_popup.SetActive(false);
         game.ValidateLevel(final_level);
+    }
+    public void ValidateTower(){
+        infopane.SetActive(false);
+        tower_popup.SetActive(false);
+        game.ValidateTower(current_tower);
     }
 
     public void Launch(){
