@@ -12,6 +12,7 @@ public class Ennemy : MonoBehaviour{
     void Update(){
         if(run){
             Vector3 dst = way_points[index].position;
+            Debug.Log("Shall go to : "+dst);
 
             Vector3 new_pos = Vector3.MoveTowards(transform.position, dst, speed*Time.deltaTime);
             transform.position = new_pos;
@@ -19,6 +20,7 @@ public class Ennemy : MonoBehaviour{
             float dist = Vector3.Distance(transform.position, dst);
 
             if(dist<=0.05){
+                Debug.Log("reached next waypoint -> "+index);
                 if(index < way_points.Count) index++;
             }
         }
@@ -43,8 +45,10 @@ public class Ennemy : MonoBehaviour{
         run = true;
     }
     public void SetWayPoints(Transform way){
+        Debug.Log("Setting the way points for an ennemy");
         way_points = new List<Transform>();
         foreach (Transform point in way){
+            Debug.Log("adding a new way-point");
             way_points.Add(point);
         }
     }

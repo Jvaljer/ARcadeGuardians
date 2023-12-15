@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8514671501348806947}
   - component: {fileID: 4436576210297971044}
   - component: {fileID: 1029945539605541457}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5091828265231429097}
   - component: {fileID: 2668206383759791006}
   - component: {fileID: 3691039957795524642}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 8717119711858561306}
   - component: {fileID: 8954039999020050054}
   - component: {fileID: 8431231730847774061}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6949486448243590952}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: wolf
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 3719372611601017238}
   - component: {fileID: 7600304932575066026}
   - component: {fileID: 4027607820829161354}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 5278081039714528980}
   - component: {fileID: 8694053601977199514}
   - component: {fileID: 2959191290412121396}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 1399270125513671444}
   - component: {fileID: 3778163568483342121}
   - component: {fileID: 3477475584762039073}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 1548172578327514512}
   - component: {fileID: 7318840328953953679}
   - component: {fileID: 7144005965504446634}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Base
   m_TagString: wolf
   m_Icon: {fileID: 0}
@@ -716,7 +716,7 @@ GameObject:
   - component: {fileID: 6297606345698886606}
   - component: {fileID: 7412875811796815093}
   - component: {fileID: 7898892560873328673}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 4932805238674456077}
   - component: {fileID: 6716745196833938480}
   - component: {fileID: 1355212959615298371}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +906,7 @@ GameObject:
   - component: {fileID: 1737038888840072523}
   - component: {fileID: 821278544957474057}
   - component: {fileID: 8939899772148026854}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1000,7 +1000,7 @@ GameObject:
   - component: {fileID: 8650547841482796515}
   - component: {fileID: -7582254270337540806}
   - component: {fileID: -415394621438051718}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wolf
   m_TagString: wolf
   m_Icon: {fileID: 0}
@@ -1016,7 +1016,7 @@ Transform:
   m_GameObject: {fileID: 9220329536755734071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 6949486448243590952}
   - {fileID: 5096002873562365595}
@@ -1051,3 +1051,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34734f0af7c4e1c4c98b5688626ee22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  way_points: []

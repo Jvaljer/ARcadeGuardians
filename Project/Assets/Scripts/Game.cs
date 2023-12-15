@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Game : MonoBehaviour{
     //linkings
+    private Transform way_points;
+    private Transform spawn_point;
     public GameObject ui;
     private GameObject level;
     private bool ingame_ui = false;
@@ -22,7 +24,7 @@ public class Game : MonoBehaviour{
     private int golds = 0;
 
     //wave handling
-    private Wave current_wave;
+    private Wave wave;
     private int wave_cnt = 0;
     private bool wave_just_ended = false;
 
@@ -53,11 +55,12 @@ public class Game : MonoBehaviour{
     public void LaunchWave(){
         //we wanna start a coroutine for the wave's progression
         lock_towers = true;
-        current_wave = new Wave(wave_cnt, difficulty);
-        current_wave.Start();
+        wave.Set(wave_cnt, difficulty, way_points, spawn_point, this);
+        wave.Begin();
     }
     public void EndWave(){
         wave_just_ended = true;
+        wave.Reset();
         wave_cnt++;
     }
 
@@ -66,6 +69,7 @@ public class Game : MonoBehaviour{
         difficulty = diff;
         towers = new List<GameObject>();
         golds = 500;
+
         switch(difficulty){
             case "easy":
                 base_hp = 50f;
@@ -114,6 +118,9 @@ public class Game : MonoBehaviour{
     public void ValidateLevel(GameObject go_level){
         level = go_level;
         GameObject.FindGameObjectWithTag("level-end").GetComponent<EndCollision>().SetMultiplicator(difficulty);
+        way_points = GameObject.FindGameObjectWithTag("path").transform;
+        spawn_point = GameObject.FindGameObjectWithTag("spawn").transform;
+        wave = level.GetComponent<Wave>();
     }
     public void ValidateTower(GameObject go_tower){
         towers.Add(go_tower);

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6891139465937582428}
   - component: {fileID: 1678547514278501825}
   - component: {fileID: 7617165214249793428}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Head
   m_TagString: goblin
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4339907014206610688}
   - component: {fileID: 2757617810244865724}
   - component: {fileID: -6238254252662170196}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Goblin
   m_TagString: goblin
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ Transform:
   m_GameObject: {fileID: 2524027050568902329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 9102579381493259063}
   - {fileID: 2046389415809440692}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 9171485852744047233}
   - component: {fileID: 8141039971835836243}
   - component: {fileID: 7335259402757594618}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Arm (1)
   m_TagString: goblin
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 4516549674948967805}
   - component: {fileID: 4905608027725821647}
   - component: {fileID: 6163666151560656044}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Base
   m_TagString: goblin
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 5554203069194213358}
   - component: {fileID: 4471176667455527784}
   - component: {fileID: 3583476326004288133}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Arm
   m_TagString: goblin
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9102579381493259063}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Body
   m_TagString: goblin
   m_Icon: {fileID: 0}
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 2878228653367556862}
   - component: {fileID: 7519277558850660061}
   - component: {fileID: 9019528759791541711}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Chest
   m_TagString: goblin
   m_Icon: {fileID: 0}
