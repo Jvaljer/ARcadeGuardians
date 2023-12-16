@@ -112,7 +112,8 @@ public class Wave : MonoBehaviour{
         game.EndWave();
         queue.Clear();*/
         GameObject next;
-        next = Instantiate(goblin, spawn.position, Quaternion.identity);
+        next = Instantiate(goblin, spawn.position, spawn.rotation);
+        next.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
         next.GetComponent<Ennemy>().SetWayPoints(way);
         next.GetComponent<Ennemy>().Launch();
         next.GetComponent<Ennemy>().Travel();

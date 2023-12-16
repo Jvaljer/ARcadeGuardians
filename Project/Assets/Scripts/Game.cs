@@ -122,13 +122,11 @@ public class Game : MonoBehaviour{
     public void ValidateLevel(GameObject marker){
         Vector3 pos = marker.transform.position;
         Quaternion rota = marker.transform.rotation;
-        //Vector3 scale = new Vector3(0.015f,0.15f,0.015f);
-        Vector3 scale = new Vector3(0.0025f,0.15f,0.0025f);
-
-        Destroy(marker);
-
+/*
         level = Instantiate(level_prefab, pos, rota);
         level.transform.localScale = scale;
+*/
+        level = marker.transform.GetChild(0).gameObject;
 
         GameObject.FindGameObjectWithTag("level-end").GetComponent<EndCollision>().SetMultiplicator(difficulty);
         GameObject.FindGameObjectWithTag("level-end").GetComponent<EndCollision>().SetGame(this);
