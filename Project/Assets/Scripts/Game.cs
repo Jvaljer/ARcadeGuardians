@@ -6,6 +6,7 @@ public class Game : MonoBehaviour{
     //linkings
     private Transform way_points;
     private Transform spawn_point;
+    private Transform areas; //this is the level's entity that encapsulate all the areas
     public GameObject ui;
     private GameObject level;
     private bool ingame_ui = false;
@@ -133,11 +134,23 @@ public class Game : MonoBehaviour{
         GameObject.FindGameObjectWithTag("level-end").GetComponent<EndCollision>().SetGame(this);
         way_points = GameObject.FindGameObjectWithTag("path").transform;
         spawn_point = GameObject.FindGameObjectWithTag("spawn").transform;
+        areas = GameObject.FindGameObjectWithTag("areas").transform;
         wave = level.GetComponent<Wave>();
     }
     public void ValidateTower(GameObject go_tower){
+        //here we wanna add the tower to the very next area 
         towers.Add(go_tower);
-        towers[towers.Count-1].GetComponent<Tower>().Setup();
+        float min = 100f;
+        Transform area = null;
+        for(int i=0; i<areas.childCount; i++){
+            Vector3 area_pos = areas.GetChild(i).position;
+            float dist = Vector3.Distance(go_tower.transform.position, area_pos);
+            if(dist <= min){
+                area = areas.GetChild(i);
+                min = dist;
+            }
+        }
+        towers[towers.Count-1].GetComponent<Tower>().Setup(area);
     }
 
     //Some Setters

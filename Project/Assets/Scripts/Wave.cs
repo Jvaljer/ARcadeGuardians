@@ -89,7 +89,7 @@ public class Wave : MonoBehaviour{
 
     //Coroutines
     private IEnumerator WaveRun(){
-        for(int i=0; i<queue.Count; i++){
+        /*for(int i=0; i<queue.Count; i++){
             float nxt_ennemy = Random.Range(1f, 2.5f);
             GameObject next;
             switch(queue[i]){
@@ -106,17 +106,16 @@ public class Wave : MonoBehaviour{
 
             next.GetComponent<Ennemy>().SetWayPoints(way);
             next.GetComponent<Ennemy>().Launch();
+            next.GetComponent<Ennemy>().Travel();
             yield return new WaitForSeconds(nxt_ennemy);
         }
-        /*
+        game.EndWave();
+        queue.Clear();*/
         GameObject next;
         next = Instantiate(goblin, spawn.position, Quaternion.identity);
         next.GetComponent<Ennemy>().SetWayPoints(way);
         next.GetComponent<Ennemy>().Launch();
         next.GetComponent<Ennemy>().Travel();
-        */
-        game.EndWave();
-        queue.Clear();
         yield return new WaitForSeconds(5f);
     }
 }

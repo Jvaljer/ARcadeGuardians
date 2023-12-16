@@ -18,7 +18,10 @@ public class Tower : MonoBehaviour{
     private float base_dmg;
     private float reload_time;
 
-    public void Setup(){
+    public void Setup(Transform tr){
+        gameObject.transform.position = tr.position;
+        gameObject.transform.rotation = tr.rotation;
+
         validated = true;
         switch(typ){
             case "archer":
@@ -38,6 +41,10 @@ public class Tower : MonoBehaviour{
         var projectile = Instantiate(projectile_prefab, launch_point.position, launch_point.rotation);
         projectile.GetComponent<Projectile>().SetDamage(base_dmg);
         projectile.GetComponent<Projectile>().SetSpeed(projectile_s);
+
+        Vector3 scale = new Vector3(0.005f, 0.005f, 0.005f);
+        projectile.transform.localScale = scale;
+
         //now we wanna make it go to the given target
         StartCoroutine(Shoot(projectile, target.gameObject));
         StartCoroutine(Reload(range));
@@ -50,11 +57,9 @@ public class Tower : MonoBehaviour{
     private IEnumerator Shoot(GameObject projectile, GameObject target){
         Projectile script = projectile.GetComponent<Projectile>();
         while(!script.ReachedTarget()){
-            // Calculate the direction vector from the projectile to the target
             Vector3 dir = (target.transform.position - projectile.transform.position).normalized;
-            // Update the projectile's position based on the direction
             projectile.transform.position += dir * script.Speed() * Time.deltaTime;
-            yield return null; //new WaitForSeconds(0.1f)
+            yield return new WaitForSeconds(0.1f); //null ?
         }
     }
 

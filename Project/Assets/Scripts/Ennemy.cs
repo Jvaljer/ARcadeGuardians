@@ -5,7 +5,6 @@ using UnityEngine;
 public class Ennemy : MonoBehaviour{
     public List<Transform> way_points;
     private float speed;
-    private int index;
     private bool run = false;
     private float health_point;
 
@@ -40,7 +39,6 @@ public class Ennemy : MonoBehaviour{
     }
 
     public void SetEntity(string category){
-        index = 0;
         switch(category){
             case "goblin":
                 health_point = 30f;

@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 8631394286440144543}
   - component: {fileID: 1961281462594577954}
   - component: {fileID: 7134046001906937555}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rempart (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7800631082d913f46a2cee7c94cead56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tower: {fileID: 4796436780416761458}
 --- !u!1 &1767264467266342862
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +269,7 @@ GameObject:
   - component: {fileID: 6066120481139474372}
   - component: {fileID: 6829182672961014767}
   - component: {fileID: 5555501493406656852}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rempart (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +364,7 @@ GameObject:
   - component: {fileID: 2503718481547509010}
   - component: {fileID: 1540179273116794184}
   - component: {fileID: 6130965476057212803}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rempart (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +459,7 @@ GameObject:
   - component: {fileID: 8181170963742996196}
   - component: {fileID: 3381881711017861289}
   - component: {fileID: 3635273841084012016}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rempart (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,7 +551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8282507190350199273}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +592,7 @@ GameObject:
   - component: {fileID: 3159193003497067531}
   - component: {fileID: 5673751510420970360}
   - component: {fileID: 905769631782066939}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rempart (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +717,7 @@ GameObject:
   - component: {fileID: 6889496807874673636}
   - component: {fileID: 9190783997170881806}
   - component: {fileID: 203067326370658957}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -812,7 +813,7 @@ GameObject:
   - component: {fileID: 8931534100938628277}
   - component: {fileID: 1892841682493752228}
   - component: {fileID: 2878338172289351854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rempart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -907,7 +908,7 @@ GameObject:
   - component: {fileID: 8852619409344976911}
   - component: {fileID: 4139271641751294027}
   - component: {fileID: 3965982556281457361}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rempart (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1002,7 +1003,7 @@ GameObject:
   - component: {fileID: 5355368388373767151}
   - component: {fileID: 590927675381539520}
   - component: {fileID: 6422694893172309673}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rempart (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1098,7 @@ GameObject:
   - component: {fileID: 7255940529516527098}
   - component: {fileID: 7283747401539248965}
   - component: {fileID: 4617459554061301781}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
