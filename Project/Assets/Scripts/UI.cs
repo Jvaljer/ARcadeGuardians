@@ -25,6 +25,7 @@ public class UI : MonoBehaviour{
     private GameObject level_marker;
     private GameObject marker_go;
     private GameObject current_tower;
+    private string tower_type;
     private bool wave_running = false;
 
     //all methods
@@ -52,8 +53,9 @@ public class UI : MonoBehaviour{
         infopane.SetActive(true);
         level_popup.SetActive(true);
     }
-    public void DetectTower(GameObject tower){
-        current_tower = tower;
+    public void DetectTower(GameObject marker, string typ){
+        current_tower = marker;
+        tower_type = typ;
         infopane.SetActive(true);
         tower_popup.SetActive(true);
     }
@@ -81,7 +83,7 @@ public class UI : MonoBehaviour{
     public void ValidateTower(){
         infopane.SetActive(false);
         tower_popup.SetActive(false);
-        game.ValidateTower(current_tower);
+        game.ValidateTower(current_tower, tower_type);
     }
 
     public void Launch(){

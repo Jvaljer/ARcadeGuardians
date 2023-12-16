@@ -22,6 +22,7 @@ public class Tower : MonoBehaviour{
         gameObject.transform.position = tr.position;
         gameObject.transform.rotation = tr.rotation;
 
+        gameObject.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
         validated = true;
         switch(typ){
             case "archer":
@@ -59,7 +60,7 @@ public class Tower : MonoBehaviour{
         while(!script.ReachedTarget()){
             Vector3 dir = (target.transform.position - projectile.transform.position).normalized;
             projectile.transform.position += dir * script.Speed() * Time.deltaTime;
-            yield return new WaitForSeconds(0.25f); //null ?
+            yield return new WaitForSeconds(0.33f);
         }
         Destroy(projectile);
     }

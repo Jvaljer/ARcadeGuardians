@@ -11,6 +11,8 @@ TagManager:
   - path
   - level
   - areas
+  - archer
+  - bomber
   layers:
   - Default
   - TransparentFX

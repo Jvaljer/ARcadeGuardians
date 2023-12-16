@@ -13,6 +13,8 @@ public class Game : MonoBehaviour{
 
     //prefabs
     public GameObject level_prefab;
+    public GameObject archer_prefab;
+    public GameObject bomber_prefab;
 
     //game variables
     private bool set = false;
@@ -98,57 +100,64 @@ public class Game : MonoBehaviour{
     public void DetectLevel(GameObject level){
         ui.GetComponent<UI>().DetectLevel(level);
     }
-    public void DetectTower(GameObject tower){
+    public void DetectTower(GameObject marker){
         if(lock_towers){
-            tower.SetActive(false);
+            marker.SetActive(false);
             return;
         }
-        switch(tower.GetComponent<Tower>().typ){
-            case "archer":
-                if(golds<=archer_cost){
-                    tower.SetActive(false);
-                    return;
-                }
-                break;
-            case "bomber":
-                break;
-            default:
-                break;
-        }
-        ui.GetComponent<UI>().DetectTower(tower);
+        ui.GetComponent<UI>().DetectTower(marker, marker.tag);
     }
 
     //UI Validation Handling
     public void ValidateLevel(GameObject marker){
         Vector3 pos = marker.transform.position;
         Quaternion rota = marker.transform.rotation;
-/*
+        //Vector3 scale = new Vector3(0.015f,0.15f,0.015f);
+        Vector3 scale = new Vector3(0.0025f,0.01f,0.0025f);
+
+        Destroy(marker);
+
         level = Instantiate(level_prefab, pos, rota);
         level.transform.localScale = scale;
-*/
-        level = marker.transform.GetChild(0).gameObject;
 
-        GameObject.FindGameObjectWithTag("level-end").GetComponent<EndCollision>().SetMultiplicator(difficulty);
-        GameObject.FindGameObjectWithTag("level-end").GetComponent<EndCollision>().SetGame(this);
-        way_points = GameObject.FindGameObjectWithTag("path").transform;
-        spawn_point = GameObject.FindGameObjectWithTag("spawn").transform;
-        areas = GameObject.FindGameObjectWithTag("areas").transform;
+        level.transform.GetChild(0).GetChild(18).GetComponent<EndCollision>().SetMultiplicator(difficulty);
+        level.transform.GetChild(0).GetChild(18).GetComponent<EndCollision>().SetGame(this);
+        way_points = level.transform.GetChild(2);
+        spawn_point = level.transform.GetChild(0).GetChild(0);
+        areas = level.transform.GetChild(1);
         wave = level.GetComponent<Wave>();
     }
-    public void ValidateTower(GameObject go_tower){
+    public void ValidateTower(GameObject preview, string typ){
         //here we wanna add the tower to the very next area 
-        towers.Add(go_tower);
         float min = 100f;
         Transform area = null;
         for(int i=0; i<areas.childCount; i++){
             Vector3 area_pos = areas.GetChild(i).position;
-            float dist = Vector3.Distance(go_tower.transform.position, area_pos);
+            float dist = Vector3.Distance(preview.transform.position, area_pos);
             if(dist <= min){
                 area = areas.GetChild(i);
                 min = dist;
             }
         }
+        switch(typ){
+            case "archer":
+                towers.Add( Instantiate(archer_prefab, area.position, area.rotation) );
+                break;
+            case "bomber":
+                towers.Add( Instantiate(bomber_prefab, area.position, area.rotation) );
+                break;
+            default:
+                break;
+        }
         towers[towers.Count-1].GetComponent<Tower>().Setup(area);
+    }
+
+    //Handling marker track loss
+    public void LooseTowerTrack(){
+        //must implement
+    }
+    public void LooseLevelTrack(){
+        //must implement
     }
 
     //Some Setters
