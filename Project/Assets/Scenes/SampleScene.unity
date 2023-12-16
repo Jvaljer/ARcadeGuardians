@@ -929,6 +929,7 @@ MonoBehaviour:
   level_prefab: {fileID: 2128595823068580069, guid: b6f3efa7d4baaa445a9cb2c024de90be, type: 3}
   archer_prefab: {fileID: 385413893826048376, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
   bomber_prefab: {fileID: 1001782946901213555, guid: ef3bd7e57aa0fba478f7b86d1508731c, type: 3}
+  indicator_prefab: {fileID: 1141045545476974440, guid: 31af1ed67a3ce5f46a6fdc3cb92c9406, type: 3}
 --- !u!1001 &1768469435
 PrefabInstance:
   m_ObjectHideFlags: 0

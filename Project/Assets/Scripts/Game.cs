@@ -15,15 +15,18 @@ public class Game : MonoBehaviour{
     public GameObject level_prefab;
     public GameObject archer_prefab;
     public GameObject bomber_prefab;
+    public GameObject indicator_prefab;
 
     //game variables
     private bool set = false;
     private string difficulty = "";
     private List<GameObject> towers;
     private int archer_cost = 200;
+    private List<bool> occupied;
 
     //vuforia handling
     private bool lock_towers = false;
+    private bool not_placed = true;
 
     //player stuff
     private float base_hp = -1f;
@@ -75,6 +78,7 @@ public class Game : MonoBehaviour{
         difficulty = diff;
         towers = new List<GameObject>();
         golds = 500;
+        occupied = new List<bool>();
 
         switch(difficulty){
             case "easy":
@@ -106,6 +110,44 @@ public class Game : MonoBehaviour{
             return;
         }
         ui.GetComponent<UI>().DetectTower(marker, marker.tag);
+
+        not_placed = true;
+        float min = 100f;
+
+        Transform area = null;
+        List<int> available = new List<int>();
+        for(int i=0; i<occupied.Count; i++){
+            if(occupied[i]==false){
+                available.Add(i);
+            }
+        }
+        //StartCoroutine(ShowPlacement(marker, available));
+    }
+    private IEnumerator ShowPlacement(GameObject preview, List<int> list){
+        Debug.Log("ShowPlacement");
+        float min = 100f;
+        Transform nearest = null;
+        GameObject indicator = Instantiate(indicator_prefab, Vector3.zero, Quaternion.identity);
+        indicator.SetActive(false);
+        while(not_placed){
+            Debug.Log("NOT PLACED");
+            foreach(int i in list){
+                Transform area = areas.GetChild(i);
+                Vector3 area_pos = area.position;
+                float dist = Vector3.Distance(preview.transform.position, area_pos);
+                if(dist <= min){
+                    if(nearest!=null) nearest.gameObject.SetActive(true);
+                    nearest = area;
+                    min = dist;
+                }
+            }
+            Debug.Log("indicator shall be on "+nearest);
+            indicator.SetActive(true);
+            indicator.transform.position = nearest.position;
+            indicator.transform.rotation = nearest.rotation;
+            nearest.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1.5f);
+        }
     }
 
     //UI Validation Handling
@@ -126,17 +168,24 @@ public class Game : MonoBehaviour{
         spawn_point = level.transform.GetChild(0).GetChild(0);
         areas = level.transform.GetChild(1);
         wave = level.GetComponent<Wave>();
+
+        for(int i=0; i<areas.childCount; i++){
+            occupied.Add(false);
+        }
     }
     public void ValidateTower(GameObject preview, string typ){
         //here we wanna add the tower to the very next area 
         float min = 100f;
         Transform area = null;
+        int index = -1;
         for(int i=0; i<areas.childCount; i++){
             Vector3 area_pos = areas.GetChild(i).position;
             float dist = Vector3.Distance(preview.transform.position, area_pos);
+            Debug.Log("distance to area "+i+" is "+dist);
             if(dist <= min){
                 area = areas.GetChild(i);
                 min = dist;
+                index = i;
             }
         }
         switch(typ){
@@ -150,6 +199,7 @@ public class Game : MonoBehaviour{
                 break;
         }
         towers[towers.Count-1].GetComponent<Tower>().Setup(area);
+        not_placed = false;
     }
 
     //Handling marker track loss
