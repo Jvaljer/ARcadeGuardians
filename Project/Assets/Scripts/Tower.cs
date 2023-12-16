@@ -60,7 +60,7 @@ public class Tower : MonoBehaviour{
         while(!script.ReachedTarget()){
             Vector3 dir = (target.transform.position - projectile.transform.position).normalized;
             projectile.transform.position += dir * script.Speed() * Time.deltaTime;
-            yield return new WaitForSeconds(0.33f);
+            yield return new WaitForSeconds(0.15f);
         }
         Destroy(projectile);
     }

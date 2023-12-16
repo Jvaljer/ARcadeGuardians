@@ -16,6 +16,9 @@ public class Projectile : MonoBehaviour{
         if(other.tag=="goblin"){
             reached = true;
             other.transform.parent.parent.gameObject.GetComponent<Ennemy>().TakeDamage(damage);
+        } else if(other.tag=="wolf"){
+            reached = true;
+            other.transform.parent.gameObject.GetComponent<Ennemy>().TakeDamage(damage);
         }
     }
 

@@ -7,6 +7,7 @@ public class Ennemy : MonoBehaviour{
     private float speed;
     private bool run = false;
     private float health_point;
+    private string typ = "";
 
     public void Travel(){
         StartCoroutine(MoveAll());
@@ -43,10 +44,12 @@ public class Ennemy : MonoBehaviour{
             case "goblin":
                 health_point = 30f;
                 speed = 3f;
+                typ = "goblin";
                 break;
             case "wolf":
                 health_point = 18f;
                 speed = 4.5f;
+                typ = "wolf";
                 break;
             default:
                 break;
@@ -65,6 +68,7 @@ public class Ennemy : MonoBehaviour{
         health_point -= d;
         if(health_point<=0){
             Destroy(gameObject);
+            GameObject.Find("ARCamera").GetComponent<Game>().Killed(typ);
         }
     }
     

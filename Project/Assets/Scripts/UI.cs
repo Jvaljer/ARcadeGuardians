@@ -103,8 +103,13 @@ public class UI : MonoBehaviour{
         wave_running = false;
     }
 
+    public void NotEnoughGolds(){
+        //must implement
+    }
+
     //Some Setters
     public void SetGolds(int g){
+        Debug.Log("setting u pgolds to "+g);
         golds_txt.text = g.ToString();
     }
     public void SetWaves(int w){

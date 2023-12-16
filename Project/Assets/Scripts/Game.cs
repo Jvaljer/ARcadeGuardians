@@ -22,10 +22,11 @@ public class Game : MonoBehaviour{
     private string difficulty = "";
     private List<GameObject> towers;
     private int archer_cost = 200;
+    private int bomber_cost = 275;
     private List<bool> occupied;
 
     //vuforia handling
-    private bool lock_towers = false;
+    private bool wave_running = false;
     private bool not_placed = true;
 
     //player stuff
@@ -54,6 +55,7 @@ public class Game : MonoBehaviour{
                 //winning condition
             }
             //must implement
+            ui.GetComponent<UI>().SetGolds(golds);
         }
     }
 
@@ -63,13 +65,14 @@ public class Game : MonoBehaviour{
     }
     public void LaunchWave(){
         //we wanna start a coroutine for the wave's progression
-        lock_towers = true;
+        wave_running = true;
         wave.Set(wave_cnt, difficulty, way_points, spawn_point, this);
         wave.Begin();
     }
     public void EndWave(){
         wave_just_ended = true;
         wave.Reset();
+        ui.GetComponent<UI>().EndWave();
         wave_cnt++;
     }
 
@@ -97,6 +100,7 @@ public class Game : MonoBehaviour{
 
         ui.GetComponent<UI>().SetGolds(golds);
         ui.GetComponent<UI>().SetWaves(0);
+        set = true;
     }
 
 
@@ -105,7 +109,7 @@ public class Game : MonoBehaviour{
         ui.GetComponent<UI>().DetectLevel(level);
     }
     public void DetectTower(GameObject marker){
-        if(lock_towers){
+        if(wave_running){
             marker.SetActive(false);
             return;
         }
@@ -121,46 +125,17 @@ public class Game : MonoBehaviour{
                 available.Add(i);
             }
         }
-        //StartCoroutine(ShowPlacement(marker, available));
-    }
-    private IEnumerator ShowPlacement(GameObject preview, List<int> list){
-        Debug.Log("ShowPlacement");
-        float min = 100f;
-        Transform nearest = null;
-        GameObject indicator = Instantiate(indicator_prefab, Vector3.zero, Quaternion.identity);
-        indicator.SetActive(false);
-        while(not_placed){
-            Debug.Log("NOT PLACED");
-            foreach(int i in list){
-                Transform area = areas.GetChild(i);
-                Vector3 area_pos = area.position;
-                float dist = Vector3.Distance(preview.transform.position, area_pos);
-                if(dist <= min){
-                    if(nearest!=null) nearest.gameObject.SetActive(true);
-                    nearest = area;
-                    min = dist;
-                }
-            }
-            Debug.Log("indicator shall be on "+nearest);
-            indicator.SetActive(true);
-            indicator.transform.position = nearest.position;
-            indicator.transform.rotation = nearest.rotation;
-            nearest.gameObject.SetActive(false);
-            yield return new WaitForSeconds(1.5f);
-        }
     }
 
     //UI Validation Handling
     public void ValidateLevel(GameObject marker){
         Vector3 pos = marker.transform.position;
         Quaternion rota = marker.transform.rotation;
-        //Vector3 scale = new Vector3(0.015f,0.15f,0.015f);
-        Vector3 scale = new Vector3(0.0025f,0.01f,0.0025f);
 
         Destroy(marker);
 
         level = Instantiate(level_prefab, pos, rota);
-        level.transform.localScale = scale;
+        level.transform.localScale = new Vector3(0.0025f, 0.01f, 0.0025f);
 
         level.transform.GetChild(0).GetChild(18).GetComponent<EndCollision>().SetMultiplicator(difficulty);
         level.transform.GetChild(0).GetChild(18).GetComponent<EndCollision>().SetGame(this);
@@ -181,27 +156,53 @@ public class Game : MonoBehaviour{
         for(int i=0; i<areas.childCount; i++){
             Vector3 area_pos = areas.GetChild(i).position;
             float dist = Vector3.Distance(preview.transform.position, area_pos);
-            Debug.Log("distance to area "+i+" is "+dist);
             if(dist <= min){
                 area = areas.GetChild(i);
                 min = dist;
                 index = i;
             }
         }
+        bool not_enough = false;
         switch(typ){
             case "archer":
-                towers.Add( Instantiate(archer_prefab, area.position, area.rotation) );
+                if(archer_cost<=golds){
+                    towers.Add( Instantiate(archer_prefab, area.position, area.rotation) );
+                    golds -= archer_cost;
+                } else {
+                    not_enough = true;
+                }
                 break;
             case "bomber":
-                towers.Add( Instantiate(bomber_prefab, area.position, area.rotation) );
+                if(bomber_cost<=golds){
+                    towers.Add( Instantiate(bomber_prefab, area.position, area.rotation) );
+                    golds -= archer_cost;
+                } else {
+                    not_enough = true;
+                }
                 break;
             default:
                 break;
         }
-        towers[towers.Count-1].GetComponent<Tower>().Setup(area);
-        not_placed = false;
-    }
 
+        if(not_enough){
+            ui.GetComponent<UI>().NotEnoughGolds();
+        } else {
+            towers[towers.Count-1].GetComponent<Tower>().Setup(area);
+            not_placed = false;
+        }
+    }
+    public void Killed(string ennemy){
+        switch(ennemy){
+            case "goblin":
+                golds += 25;
+                break;
+            case "wolf":
+                golds += 50;
+                break;
+            default:
+                break;
+        }
+    }
     //Handling marker track loss
     public void LooseTowerTrack(){
         //must implement
