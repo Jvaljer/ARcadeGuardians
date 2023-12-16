@@ -9,19 +9,32 @@ public class Ennemy : MonoBehaviour{
     private bool run = false;
     private float health_point;
 
-    void Update(){
-        if(run){
-            Vector3 dst = way_points[index].position;
-            Debug.Log("Shall go to : "+dst);
+    public void Travel(){
+        StartCoroutine(MoveAll());
+    }
+    private IEnumerator MoveAll(){
+        for(int i=0; i<way_points.Count; i++){
+            Vector3 dest = way_points[i].position;
+            Vector3 pos = transform.position;
+            
+            float x_dif = (dest.x-pos.x)/30f;
+            float y_dif = (dest.y-pos.y)/30f;
+            float z_dif = (dest.z-pos.z)/30f;
 
-            Vector3 new_pos = Vector3.MoveTowards(transform.position, dst, speed*Time.deltaTime);
-            transform.position = new_pos;
+            float dist = Vector3.Distance(pos, dest);
+            float x = pos.x;
+            float y = pos.y;
+            float z = pos.z;
 
-            float dist = Vector3.Distance(transform.position, dst);
+            for(int j=0; j<30; j++){
+                x += x_dif;
+                y += y_dif;
+                z += z_dif;
+                Vector3 new_pos = new Vector3(x,y,z);
+                transform.position = new_pos;
+                dist = Vector3.Distance(transform.position, dest);
 
-            if(dist<=0.05){
-                Debug.Log("reached next waypoint -> "+index);
-                if(index < way_points.Count) index++;
+                yield return new WaitForSeconds(0.05f);
             }
         }
     }
@@ -45,16 +58,20 @@ public class Ennemy : MonoBehaviour{
         run = true;
     }
     public void SetWayPoints(Transform way){
-        Debug.Log("Setting the way points for an ennemy");
         way_points = new List<Transform>();
         foreach (Transform point in way){
-            Debug.Log("adding a new way-point");
             way_points.Add(point);
         }
     }
     public void TakeDamage(float d){
         health_point -= d;
         if(health_point<=0){
+            Destroy(gameObject);
+        }
+    }
+    
+    public void OnCollisionEnter(Collision col){
+        if(col.gameObject.CompareTag("level-end")){
             Destroy(gameObject);
         }
     }

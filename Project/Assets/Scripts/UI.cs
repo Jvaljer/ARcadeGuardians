@@ -85,7 +85,6 @@ public class UI : MonoBehaviour{
     }
 
     public void Launch(){
-        Debug.Log("[----------UI.LAUNCH----------]");
         game.Initialize(difficulty);
         settings.SetActive(false);
         ingame.SetActive(true);

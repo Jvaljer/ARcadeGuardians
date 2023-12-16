@@ -121,19 +121,16 @@ public class Game : MonoBehaviour{
     public void ValidateLevel(GameObject marker){
         Vector3 pos = marker.transform.position;
         Quaternion rota = marker.transform.rotation;
-        Vector3 scale = new Vector3(0.015f,0.15f,0.015f);
-
-        Debug.Log("position has been validated");
+        //Vector3 scale = new Vector3(0.015f,0.15f,0.015f);
+        Vector3 scale = new Vector3(0.0025f,0.15f,0.0025f);
 
         Destroy(marker);
-        Debug.Log("Destroyed marker");
 
         level = Instantiate(level_prefab, pos, rota);
-        Debug.Log("Instantiated object");
         level.transform.localScale = scale;
-        Debug.Log("scaled object");
 
         GameObject.FindGameObjectWithTag("level-end").GetComponent<EndCollision>().SetMultiplicator(difficulty);
+        GameObject.FindGameObjectWithTag("level-end").GetComponent<EndCollision>().SetGame(this);
         way_points = GameObject.FindGameObjectWithTag("path").transform;
         spawn_point = GameObject.FindGameObjectWithTag("spawn").transform;
         wave = level.GetComponent<Wave>();

@@ -6,9 +6,9 @@ public class EndCollision : MonoBehaviour{
     public Game game;
     private float diff_mult;
 
-    public void OnTriggerEnter(Collider other){
+    public void OnCollisionEnter(Collision col){
         int op_damage;
-        switch (other.tag){
+        switch (col.gameObject.tag){
             case "goblin":
                 op_damage = 3;
                 break;
@@ -37,5 +37,9 @@ public class EndCollision : MonoBehaviour{
                 diff_mult = 0f;
                 break;
         }
+    }
+
+    public void SetGame(Game G){
+        game = G;
     }
 }
