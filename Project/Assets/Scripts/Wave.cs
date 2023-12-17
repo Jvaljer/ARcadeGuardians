@@ -37,46 +37,37 @@ public class Wave : MonoBehaviour{
                 ennemies_in = -1;
                 break;
         }
-
+        Debug.Log("we want "+ennemies_in+" ennemies");
+        queue = new List<string>();
         //we wanna have at least half of ennemies being goblins
         int half = ennemies_in / 2;
+        queue.Add("w");
         int g_cnt = half;
         int w_cnt = 0;
-        
+        queue = new List<string>();
         // Adjust counts based on the desired behavior
         for (int i = 0; i < half; i++) {
+            queue.Add("g");
             float r = Random.Range(0f, 100f);
+            Debug.Log("r="+r);
             if(r<(25f+(cpt*2f))){
+                Debug.Log("Adding a WOLF");
                 w_cnt++;
+                queue.Add("w");
             } else {
                 if(diff=="medium" && (r<50f+(cpt*2.5f))){
                     w_cnt++;
+                    queue.Add("w");
                 } else if(diff=="hard" && (r<75f+(cpt*2f))){
                     w_cnt++;
+                    queue.Add("w");
                 } else {
                     g_cnt++;
-                }
-            }
-        }
-
-        queue = new List<string>();
-
-        for(int i=0; i<ennemies_in; i++){
-            float r = Random.Range(0f,10f);
-            if(g_cnt<=0){
-                queue.Add("g");
-            } else if(w_cnt<=0){
-                queue.Add("w");
-            } else {
-                if(r<=4f){
-                    queue.Add("w");
-                    w_cnt--;
-                } else {
                     queue.Add("g");
-                    g_cnt--;
                 }
             }
         }
+        Debug.Log("and after we have "+queue.Count+" ennemies");
     }
 
     //Methods
@@ -86,10 +77,11 @@ public class Wave : MonoBehaviour{
     public void Reset(){
         //must implement
     }
+    public int EnnemiesAmount(){ return ennemies_in; }
 
     //Coroutines
     private IEnumerator WaveRun(){
-        /*for(int i=0; i<queue.Count; i++){
+        for(int i=0; i<queue.Count; i++){
             float nxt_ennemy = Random.Range(1f, 2.5f);
             GameObject next;
             switch(queue[i]){
@@ -113,15 +105,7 @@ public class Wave : MonoBehaviour{
             next.GetComponent<Ennemy>().Travel();
             yield return new WaitForSeconds(nxt_ennemy);
         }
-        game.EndWave();
-        queue.Clear();*/
-        GameObject next;
-        next = Instantiate(wolf, spawn.position, spawn.rotation);
-        next.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
-        next.GetComponent<Ennemy>().SetEntity("wolf");
-        next.GetComponent<Ennemy>().SetWayPoints(way);
-        next.GetComponent<Ennemy>().Launch();
-        next.GetComponent<Ennemy>().Travel();
+        queue.Clear();
         yield return new WaitForSeconds(5f);
     }
 }

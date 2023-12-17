@@ -37,6 +37,7 @@ public class Game : MonoBehaviour{
     private Wave wave;
     private int wave_cnt = 0;
     private bool wave_just_ended = false;
+    private int out_cnt = -1;
 
     //Update Method -> Testing the crucial predicates on each frames
     private void Update(){
@@ -45,6 +46,12 @@ public class Game : MonoBehaviour{
                 //loosing condition
             }
             if(ingame_ui){
+                if(wave_running){
+                    if(out_cnt==0){
+                        Debug.Log("OUT_CNT IS NOW 0");
+                        EndWave();
+                    }
+                }
                 //refresh the ui texts of golds & waves
                 if(wave_just_ended){
                     ui.GetComponent<UI>().SetWaves(wave_cnt);
@@ -61,6 +68,7 @@ public class Game : MonoBehaviour{
 
     //Game Logic Handling
     public void EnnemyReachedEnd(float damage){
+        out_cnt--;
         base_hp -= damage;
     }
     public void LaunchWave(){
@@ -68,8 +76,10 @@ public class Game : MonoBehaviour{
         wave_running = true;
         wave.Set(wave_cnt, difficulty, way_points, spawn_point, this);
         wave.Begin();
+        out_cnt = wave.EnnemiesAmount(); 
     }
     public void EndWave(){
+        Debug.Log("wave has ended");
         wave_just_ended = true;
         wave.Reset();
         ui.GetComponent<UI>().EndWave();
@@ -192,6 +202,7 @@ public class Game : MonoBehaviour{
         }
     }
     public void Killed(string ennemy){
+        out_cnt--;
         switch(ennemy){
             case "goblin":
                 golds += 25;

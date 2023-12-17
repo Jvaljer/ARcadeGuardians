@@ -26,7 +26,7 @@ public class Tower : MonoBehaviour{
         validated = true;
         switch(typ){
             case "archer":
-                projectile_s = 1.5f;
+                projectile_s = 0.25f;
                 base_dmg = 8f;
                 reload_time = 0.85f;
                 break;
@@ -60,7 +60,7 @@ public class Tower : MonoBehaviour{
         while(!script.ReachedTarget()){
             Vector3 dir = (target.transform.position - projectile.transform.position).normalized;
             projectile.transform.position += dir * script.Speed() * Time.deltaTime;
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.05f);
         }
         Destroy(projectile);
     }

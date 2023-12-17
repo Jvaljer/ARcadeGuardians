@@ -11,9 +11,11 @@ public class UI : MonoBehaviour{
     public Text waves_txt;
     public GameObject settings;
     public GameObject ingame;
-    public GameObject infopane;
+    public GameObject detectpane;
     public GameObject level_popup;
     public GameObject tower_popup;
+    public GameObject waveend;
+    public GameObject infopane;
 
     //variables
     private string difficulty = "___";
@@ -50,24 +52,24 @@ public class UI : MonoBehaviour{
         if(!level_set){
             level_marker = marker;
         }
-        infopane.SetActive(true);
+        detectpane.SetActive(true);
         level_popup.SetActive(true);
     }
     public void DetectTower(GameObject marker, string typ){
         current_tower = marker;
         tower_type = typ;
-        infopane.SetActive(true);
+        detectpane.SetActive(true);
         tower_popup.SetActive(true);
     }
 
     //Ignoring Handling
     public void IgnoreLevel(){
-        infopane.SetActive(false);
+        detectpane.SetActive(false);
         level_popup.SetActive(false);
         level_marker = null; //wanna destroy or set to null ???
     }
     public void IgnoreTower(){
-        infopane.SetActive(false);
+        detectpane.SetActive(false);
         tower_popup.SetActive(false);
         current_tower = null; //wanna destroy or set to null ???
     }
@@ -75,13 +77,13 @@ public class UI : MonoBehaviour{
     //Validating Methods
     public void ValidateLevel(){
         level_set = true;
-        infopane.SetActive(false);
+        detectpane.SetActive(false);
         level_popup.SetActive(false);
         marker_go = level_marker;
         game.ValidateLevel(marker_go);
     }
     public void ValidateTower(){
-        infopane.SetActive(false);
+        detectpane.SetActive(false);
         tower_popup.SetActive(false);
         game.ValidateTower(current_tower, tower_type);
     }
@@ -101,6 +103,7 @@ public class UI : MonoBehaviour{
     }
     public void EndWave(){
         wave_running = false;
+        waveend.SetActive(true);
     }
 
     public void NotEnoughGolds(){
