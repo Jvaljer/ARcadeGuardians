@@ -31,6 +31,7 @@ public class Game : MonoBehaviour{
     private List<GameObject> towers;
     private int archer_cost = 200;
     private int bomber_cost = 275;
+    private int spell_cost = 25;
     private List<bool> occupied;
 
     //vuforia handling
@@ -86,14 +87,14 @@ public class Game : MonoBehaviour{
         ui.GetComponent<UI>().EndWave();
         wave_cnt++;
         ui.GetComponent<UI>().SetWaves(wave_cnt);
-        golds += 100 - (10*reached) + (wave_cnt*15);
+        golds += 300 - (10*reached) + (wave_cnt*15);
     }
 
     //Settings Handling
     public void Initialize(string diff){
         difficulty = diff;
         towers = new List<GameObject>();
-        golds = 500;
+        golds = 600;
         occupied = new List<bool>();
 
         switch(difficulty){
@@ -280,6 +281,10 @@ public class Game : MonoBehaviour{
 
     //Spell Handling
     public void ApplyFireSpell(GameObject marker){
+        if(spell_cost>=golds){
+            return;
+        }
+        golds -= spell_cost;
         select = true;
         Transform target = null;
         float min = 100f;
@@ -294,8 +299,13 @@ public class Game : MonoBehaviour{
         if(target!=null){
             StartCoroutine(FireSpell(target));
         }
+        marker.transform.GetChild(0).gameObject.SetActive(false);
     }
     public void ApplyArrowsSpell(GameObject marker){
+        if(spell_cost>=golds){
+            return;
+        }
+        golds -= spell_cost;
         select = true;
         Transform target = null;
         float min = 100f;
@@ -310,6 +320,7 @@ public class Game : MonoBehaviour{
         if(target!=null){
             StartCoroutine(ArrowSpell(target));
         }
+        marker.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     private IEnumerator FireSpell(Transform trgt){
@@ -327,10 +338,12 @@ public class Game : MonoBehaviour{
     }
     //Win & Loose States
     public void PlayerWin(){
-        //must implement
+        ui.GetComponent<UI>().Win();
+        set = false;
     }
     public void PlayerLoose(){
-        //must implement
+        ui.GetComponent<UI>().Lost();
+        set = false;
     }
 
 

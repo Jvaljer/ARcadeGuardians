@@ -20,6 +20,9 @@ public class UI : MonoBehaviour{
     public GameObject choice;
     public GameObject upgradechoosed;
     public GameObject spellchoosed;
+    public GameObject winpanel;
+    public GameObject lostpanel;
+    public GameObject outgame;
 
     //variables
     private string marker = "";
@@ -189,5 +192,20 @@ public class UI : MonoBehaviour{
     }
     public void SetHP(float p){
         health_txt.text = p.ToString();
+    }
+
+    public void Lost(){
+        ingame.SetActive(false);
+        outgame.SetActive(true);
+        lostpanel.SetActive(true);
+    }
+    public void Win(){
+        ingame.SetActive(false);
+        outgame.SetActive(true);
+        winpanel.SetActive(true);
+    }
+
+    public void Quit(){
+        Application.Quit();
     }
 }
