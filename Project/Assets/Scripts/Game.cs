@@ -6,7 +6,8 @@ public class Game : MonoBehaviour{
     //linkings
     private Transform way_points;
     private Transform spawn_point;
-    private Transform areas; //this is the level's entity that encapsulate all the areas
+    private Transform areas; 
+    private List<Transform> path;
     public GameObject ui;
     private GameObject level;
     private bool ingame_ui = false;
@@ -16,6 +17,12 @@ public class Game : MonoBehaviour{
     public GameObject archer_prefab;
     public GameObject bomber_prefab;
     public GameObject up_indicator;
+    public GameObject fire_prefab;
+    public GameObject arrows_prefab;
+
+    //Materials
+    public Material target_mat;
+    public Material path_mat;
 
 
     //game variables
@@ -28,6 +35,7 @@ public class Game : MonoBehaviour{
 
     //vuforia handling
     private bool wave_running = false;
+    private bool select = false;
 
     //player stuff
     private float base_hp = -1f;
@@ -42,7 +50,7 @@ public class Game : MonoBehaviour{
     private void Update(){
         if(set){
             if(base_hp<=0){
-                //loosing condition
+                PlayerLoose();
             }
             if(ingame_ui){
                 if(wave_running){
@@ -52,10 +60,11 @@ public class Game : MonoBehaviour{
                 }
             }
             if(wave_cnt>10){
-                //winning condition
+                PlayerWin();
             }
-            //must implement
+            
             ui.GetComponent<UI>().SetGolds(golds);
+            ui.GetComponent<UI>().SetHP(base_hp);
         }
     }
 
@@ -77,7 +86,7 @@ public class Game : MonoBehaviour{
         ui.GetComponent<UI>().EndWave();
         wave_cnt++;
         ui.GetComponent<UI>().SetWaves(wave_cnt);
-        golds += 100 - (10*reached) + (wave_cnt*10);
+        golds += 100 - (10*reached) + (wave_cnt*15);
     }
 
     //Settings Handling
@@ -144,13 +153,22 @@ public class Game : MonoBehaviour{
         Destroy(marker);
 
         level = Instantiate(level_prefab, pos, rota);
-        level.transform.localScale = new Vector3(0.0025f, 0.01f, 0.0025f);
+        level.transform.localScale = new Vector3(0.004f, 0.01f, 0.004f);
 
         level.transform.GetChild(0).GetChild(18).GetComponent<EndCollision>().SetMultiplicator(difficulty);
         level.transform.GetChild(0).GetChild(18).GetComponent<EndCollision>().SetGame(this);
         way_points = level.transform.GetChild(2);
         spawn_point = level.transform.GetChild(0).GetChild(0);
         areas = level.transform.GetChild(1);
+        
+        Transform tmp = level.transform.GetChild(0);
+        path = new List<Transform>();
+        for(int i=0; i<tmp.childCount; i++){
+            if(tmp.GetChild(i).gameObject.CompareTag("path")){
+                path.Add(tmp.GetChild(i));
+            }
+        }
+
         wave = level.GetComponent<Wave>();
 
         for(int i=0; i<areas.childCount; i++){
@@ -180,17 +198,14 @@ public class Game : MonoBehaviour{
                     towers.Add( Instantiate(archer_prefab, area.position, area.rotation) );
                     golds -= archer_cost;
                 } else {
-                    Debug.Log("Not Enough to create ARCHER");
                     not_enough = true;
                 }
                 break;
             case "bomber":
                 if(bomber_cost<=golds){
-                    Debug.Log("Creating BOMBER");
                     towers.Add( Instantiate(bomber_prefab, area.position, area.rotation) );
                     golds -= bomber_cost;
                 } else {
-                    Debug.Log("Not Enough to create BOMBER");
                     not_enough = true;
                 }
                 break;
@@ -199,8 +214,9 @@ public class Game : MonoBehaviour{
         }
 
         if(not_enough){
-            ui.GetComponent<UI>().NotEnoughGolds();
+            ui.GetComponent<UI>().NotEnoughGolds(typ);
         } else {
+            occupied[index] = true;
             towers[towers.Count-1].GetComponent<Tower>().Setup(area);
         }
         preview.transform.GetChild(0).gameObject.SetActive(false);
@@ -260,6 +276,88 @@ public class Game : MonoBehaviour{
             }
         }
         marker.transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+    //Spell Handling
+    public void ApplyFireSpell(GameObject marker){
+        select = true;
+        Transform target = null;
+        float min = 100f;
+        for(int i=0; i<path.Count; i++){
+            Vector3 path_part = path[i].transform.position;
+            float dist = Vector3.Distance(marker.transform.position, path_part);
+            if(dist <= min){
+                target = path[i];
+                min = dist;
+            }
+        }
+        if(target!=null){
+            StartCoroutine(FireSpell(target));
+        }
+    }
+    public void ApplyArrowsSpell(GameObject marker){
+        select = true;
+        Transform target = null;
+        float min = 100f;
+        for(int i=0; i<path.Count; i++){
+            Vector3 path_part = path[i].transform.position;
+            float dist = Vector3.Distance(marker.transform.position, path_part);
+            if(dist <= min){
+                target = path[i];
+                min = dist;
+            }
+        }
+        if(target!=null){
+            StartCoroutine(ArrowSpell(target));
+        }
+    }
+
+    private IEnumerator FireSpell(Transform trgt){
+        GameObject fire = Instantiate(fire_prefab, trgt.position, trgt.rotation);
+        fire.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        yield return new WaitForSeconds(8f);
+        Destroy(fire);
+    }
+
+    private IEnumerator ArrowSpell(Transform trgt){
+        GameObject arrows = Instantiate(arrows_prefab, trgt.position, trgt.rotation);
+        arrows.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        yield return new WaitForSeconds(8f);
+        Destroy(arrows);
+    }
+    //Win & Loose States
+    public void PlayerWin(){
+        //must implement
+    }
+    public void PlayerLoose(){
+        //must implement
+    }
+
+
+    //Coroutine used by UI
+    public IEnumerator ShowSpellTarget(GameObject marker){
+        Transform target = null;
+        while(!select){
+            float min = 100f;
+            for(int i=0; i<path.Count; i++){
+                Vector3 path_part = path[i].transform.position;
+                float dist = Vector3.Distance(marker.transform.position, path_part);
+                if(dist <= min){
+                    target = path[i];
+                    min = dist;
+                }
+            }
+
+            if(target!=null){
+                target.gameObject.GetComponent<Renderer>().material = target_mat;
+            }
+            
+            yield return new WaitForSeconds(0.25f);
+
+            if(target!=null){
+                target.gameObject.GetComponent<Renderer>().material = path_mat;
+            }
+        }
     }
 
     //Some Setters

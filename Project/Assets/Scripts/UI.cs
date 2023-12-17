@@ -9,6 +9,7 @@ public class UI : MonoBehaviour{
     public Text setting_label;
     public Text golds_txt;
     public Text waves_txt;
+    public Text health_txt;
     public GameObject settings;
     public GameObject ingame;
     public GameObject detectpane;
@@ -18,6 +19,7 @@ public class UI : MonoBehaviour{
     public GameObject infopane;
     public GameObject choice;
     public GameObject upgradechoosed;
+    public GameObject spellchoosed;
 
     //variables
     private string marker = "";
@@ -92,6 +94,11 @@ public class UI : MonoBehaviour{
         upgradechoosed.SetActive(false);
         tmp_marker = null;
     }
+    public void IgnoreSpell(){
+        detectpane.SetActive(false);
+        spellchoosed.SetActive(false);
+        tmp_marker = null;
+    }
 
     //Validating Methods
     public void ValidateLevel(){
@@ -120,6 +127,20 @@ public class UI : MonoBehaviour{
         detectpane.SetActive(false);
         upgradechoosed.SetActive(false);
     }
+    public void ValidateSpell(){
+        switch(marker){
+            case "fireball":
+                game.ApplyFireSpell(tmp_marker);
+                break;
+            case "arrows":
+                game.ApplyArrowsSpell(tmp_marker);
+                break;
+            default:
+                break;
+        }
+        detectpane.SetActive(false);
+        spellchoosed.SetActive(false);
+    }
 
     public void Launch(){
         game.Initialize(difficulty);
@@ -129,35 +150,21 @@ public class UI : MonoBehaviour{
     }
     public void LaunchNextWave(){
         if(wave_running){
-            Debug.Log("WAVE RUNNING");
             return;
         }
         game.LaunchWave();
         wave_running = true;
     }
     public void ChooseUpgrade(){
-        switch(marker){ //this will serve for visual displaying
-            case "fireball":
-                break;
-            case "arrows":
-                break;
-            default:
-                break;
-        }
         choice.SetActive(false);
         detectpane.SetActive(true);
         upgradechoosed.SetActive(true);
     }
     public void ChooseSpell(){
-        switch(marker){
-            case "fireball":
-                break;
-            case "arrows":
-                break;
-            default:
-                break;
-        }
-        //must implement
+        choice.SetActive(false);
+        detectpane.SetActive(true);
+        spellchoosed.SetActive(true);
+        StartCoroutine(game.ShowSpellTarget(tmp_marker));
     }
     public void EndWave(){
         wave_running = false;
@@ -165,7 +172,7 @@ public class UI : MonoBehaviour{
         waveend.SetActive(true);
     }
 
-    public void NotEnoughGolds(){
+    public void NotEnoughGolds(string tow_typ){
         //must implement
     }
     public void WaveOk(){
@@ -179,5 +186,8 @@ public class UI : MonoBehaviour{
     }
     public void SetWaves(int w){
         waves_txt.text = w.ToString();
+    }
+    public void SetHP(float p){
+        health_txt.text = p.ToString();
     }
 }

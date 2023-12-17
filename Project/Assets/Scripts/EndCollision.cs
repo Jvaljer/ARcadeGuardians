@@ -10,10 +10,10 @@ public class EndCollision : MonoBehaviour{
         int op_damage;
         switch (col.gameObject.tag){
             case "goblin":
-                op_damage = 3;
+                op_damage = 5;
                 break;
             case "wolf":
-                op_damage = 5;
+                op_damage = 8;
                 break;
             default:
                 op_damage = 0;

@@ -6,6 +6,8 @@ public class Ennemy : MonoBehaviour{
     public List<Transform> way_points;
     private float move_refresh;
     private float health_point;
+    private bool on_fire = false;
+    private bool arrows_on = false;
 
     public void Travel(){
         StartCoroutine(MoveAll());
@@ -68,6 +70,40 @@ public class Ennemy : MonoBehaviour{
         if(col.gameObject.CompareTag("level-end")){
             Destroy(gameObject);
         }
+    }
+
+    public void FireAffected(float dmg){
+        on_fire = true;
+        StartCoroutine(FireDamage(dmg));
+    }
+    private IEnumerator FireDamage(float d){
+        float time = 0f;
+        while(on_fire){
+            TakeDamage(d);
+            yield return new WaitForSeconds(0.5f);
+            time += 0.5f;
+            if(time>=8f) on_fire = false;
+        }
+    }
+    public void FireHealed(){
+        on_fire = false;
+    }
+
+    public void ArrowsRain(float dmg){
+        arrows_on = true;
+        StartCoroutine(ArrowsDamage(dmg));
+    }
+    private IEnumerator ArrowsDamage(float d){
+        float time = 0f;
+        while(arrows_on){
+            TakeDamage(d);
+            yield return new WaitForSeconds(0.75f);
+            time += 0.75f;
+            if(time>=8f) arrows_on = false;
+        }
+    }
+    public void ArrowsStop(){
+        arrows_on = false;
     }
 }
 
