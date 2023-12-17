@@ -16,8 +16,11 @@ public class UI : MonoBehaviour{
     public GameObject tower_popup;
     public GameObject waveend;
     public GameObject infopane;
+    public GameObject choice;
+    public GameObject upgradechoosed;
 
     //variables
+    private string marker = "";
     private string difficulty = "___";
 
     //predicates
@@ -27,6 +30,7 @@ public class UI : MonoBehaviour{
     private GameObject level_marker;
     private GameObject marker_go;
     private GameObject current_tower;
+    private GameObject tmp_marker;
     private string tower_type;
     private bool wave_running = false;
 
@@ -61,6 +65,15 @@ public class UI : MonoBehaviour{
         detectpane.SetActive(true);
         tower_popup.SetActive(true);
     }
+    public void DetectFireball(GameObject f_marker){
+        choice.SetActive(true);
+        marker = "fireball";
+        tmp_marker = f_marker;
+    }
+    public void DetectArrows(){
+        choice.SetActive(true);
+        marker = "arrows";
+    }
 
     //Ignoring Handling
     public void IgnoreLevel(){
@@ -72,6 +85,9 @@ public class UI : MonoBehaviour{
         detectpane.SetActive(false);
         tower_popup.SetActive(false);
         current_tower = null; //wanna destroy or set to null ???
+    }
+    public void IgnoreUpgrade(){
+        //must implement
     }
 
     //Validating Methods
@@ -87,6 +103,17 @@ public class UI : MonoBehaviour{
         tower_popup.SetActive(false);
         game.ValidateTower(current_tower, tower_type);
     }
+    public void ValidateUpgrade(){
+        switch(marker){
+            case "fireball":
+                game.ApplyFireUpgrade(tmp_marker);
+                break;
+            case "arrows":
+                break;
+            default:
+                break;
+        }
+    }
 
     public void Launch(){
         game.Initialize(difficulty);
@@ -100,6 +127,30 @@ public class UI : MonoBehaviour{
         }
         game.LaunchWave();
         wave_running = true;
+    }
+    public void ChooseUpgrade(){
+        switch(marker){ //this will serve for visual displaying
+            case "fireball":
+                break;
+            case "arrows":
+                break;
+            default:
+                break;
+        }
+        choice.SetActive(false);
+        detectpane.SetActive(true);
+        upgradechoosed.SetActive(true);
+    }
+    public void ChooseSpell(){
+        switch(marker){
+            case "fireball":
+                break;
+            case "arrows":
+                break;
+            default:
+                break;
+        }
+        //must implement
     }
     public void EndWave(){
         wave_running = false;

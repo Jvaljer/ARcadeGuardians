@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Ennemy : MonoBehaviour{
     public List<Transform> way_points;
-    private float speed;
-    private bool run = false;
+    private float move_refresh;
     private float health_point;
-    private string typ = "";
 
     public void Travel(){
         StartCoroutine(MoveAll());
@@ -34,7 +32,7 @@ public class Ennemy : MonoBehaviour{
                 transform.position = new_pos;
                 dist = Vector3.Distance(transform.position, dest);
 
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(move_refresh);
             }
         }
     }
@@ -43,20 +41,15 @@ public class Ennemy : MonoBehaviour{
         switch(category){
             case "goblin":
                 health_point = 30f;
-                speed = 3f;
-                typ = "goblin";
+                move_refresh = 0.05f;
                 break;
             case "wolf":
                 health_point = 18f;
-                speed = 4.5f;
-                typ = "wolf";
+                move_refresh = 0.025f;
                 break;
             default:
                 break;
         }
-    }
-    public void Launch(){
-        run = true;
     }
     public void SetWayPoints(Transform way){
         way_points = new List<Transform>();

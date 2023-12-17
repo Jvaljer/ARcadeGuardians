@@ -27,7 +27,6 @@ public class Game : MonoBehaviour{
 
     //vuforia handling
     private bool wave_running = false;
-    private bool not_placed = true;
 
     //player stuff
     private float base_hp = -1f;
@@ -36,7 +35,6 @@ public class Game : MonoBehaviour{
     //wave handling
     private Wave wave;
     private int wave_cnt = 0;
-    private bool wave_just_ended = false;
     private int reached = -1;
 
     //Update Method -> Testing the crucial predicates on each frames
@@ -121,16 +119,18 @@ public class Game : MonoBehaviour{
         }
         ui.GetComponent<UI>().DetectTower(marker, marker.tag);
 
-        not_placed = true;
-        float min = 100f;
-
-        Transform area = null;
         List<int> available = new List<int>();
         for(int i=0; i<occupied.Count; i++){
             if(occupied[i]==false){
                 available.Add(i);
             }
         }
+    }
+    public void DetectFireball(GameObject marker){
+        ui.GetComponent<UI>().DetectFireball(marker);
+    }
+    public void DetectArrows(){
+        ui.GetComponent<UI>().DetectArrows();
     }
 
     //UI Validation Handling
@@ -199,15 +199,12 @@ public class Game : MonoBehaviour{
             ui.GetComponent<UI>().NotEnoughGolds();
         } else {
             towers[towers.Count-1].GetComponent<Tower>().Setup(area);
-            not_placed = false;
         }
         preview.transform.GetChild(0).gameObject.SetActive(false);
     }
-    //Handling marker track loss
-    public void LooseTowerTrack(GameObject marker){
-        //must implement
-    }
-    public void LooseLevelTrack(){
+
+    //Handling Upgrades Applyance
+    public void ApplyFireUpgrade(GameObject marker){
         //must implement
     }
 

@@ -87,12 +87,12 @@ public class Wave : MonoBehaviour{
             switch(queue[i]){
                 case "g":
                     next = Instantiate(goblin, spawn.position, Quaternion.identity);
-                    next.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+                    next.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
                     next.GetComponent<Ennemy>().SetEntity("goblin");
                     break;
                 case "w":
                     next = Instantiate(wolf, spawn.position, Quaternion.identity);
-                    next.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+                    next.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
                     next.GetComponent<Ennemy>().SetEntity("wolf");
                     break;
                 default:
@@ -101,7 +101,6 @@ public class Wave : MonoBehaviour{
             }
 
             next.GetComponent<Ennemy>().SetWayPoints(way);
-            next.GetComponent<Ennemy>().Launch();
             next.GetComponent<Ennemy>().Travel();
             yield return new WaitForSeconds(nxt_ennemy);
         }
