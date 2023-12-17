@@ -15,7 +15,8 @@ public class Game : MonoBehaviour{
     public GameObject level_prefab;
     public GameObject archer_prefab;
     public GameObject bomber_prefab;
-    public GameObject indicator_prefab;
+    public GameObject up_indicator;
+
 
     //game variables
     private bool set = false;
@@ -127,6 +128,7 @@ public class Game : MonoBehaviour{
         }
     }
     public void DetectFireball(GameObject marker){
+        marker.transform.GetChild(0).gameObject.SetActive(true);
         ui.GetComponent<UI>().DetectFireball(marker);
     }
     public void DetectArrows(){
@@ -205,7 +207,29 @@ public class Game : MonoBehaviour{
 
     //Handling Upgrades Applyance
     public void ApplyFireUpgrade(GameObject marker){
-        //must implement
+        float min = 100f;
+        GameObject tower = null;
+        for(int i=0; i<towers.Count; i++){
+            if(towers[i].GetComponent<Tower>().typ=="bomber"){
+                Vector3 tower_pos = towers[i].transform.position;
+                float dist = Vector3.Distance(marker.transform.position, tower_pos);
+                if(dist <= min){
+                    tower = towers[i];
+                    min = dist;
+                }
+            }
+        }
+        if(tower!=null){
+            tower.GetComponent<Tower>().Upgrade();
+            int up_lvl = tower.GetComponent<Tower>().level;
+            Vector3 up_pos = new Vector3(tower.transform.position.x, tower.transform.position.y+0.025f, tower.transform.position.z);
+            GameObject indicator = Instantiate(up_indicator, up_pos, tower.transform.rotation);
+            indicator.transform.localScale = new Vector3(0.0025f, 0.0025f, 0.0025f);
+            Debug.Log("tower level is "+up_lvl);
+            float x = up_pos.x+(up_lvl*0.0025f);
+            indicator.transform.position = new Vector3(x, up_pos.y, up_pos.z);
+        }
+        marker.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     //Some Setters

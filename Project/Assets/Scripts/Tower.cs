@@ -17,6 +17,9 @@ public class Tower : MonoBehaviour{
     private float projectile_s;
     private float base_dmg;
     private float reload_time;
+    public int level = 0;
+    private int up_dmg = 0;
+    private float up_spd = 0f;
 
     public void Setup(Transform tr){
         gameObject.transform.position = tr.position;
@@ -40,11 +43,28 @@ public class Tower : MonoBehaviour{
         }
     }
 
+    public void Upgrade(){
+        Debug.Log("this is the "+(level+1)+"th level for this tower");
+        level++;
+        switch(typ){
+            case "archer":
+                up_dmg += 4;
+                up_spd += 0.25f;
+                break;
+            case "bomber":
+                up_dmg += 6;
+                up_spd += 0.125f;
+                break;
+            default:
+                break;
+        }
+    }
+
     //Shoot Handling
     public void FireProjectileAt(Collider target){
         var projectile = Instantiate(projectile_prefab, launch_point.position, launch_point.rotation);
-        projectile.GetComponent<Projectile>().SetDamage(base_dmg);
-        projectile.GetComponent<Projectile>().SetSpeed(projectile_s);
+        projectile.GetComponent<Projectile>().SetDamage(base_dmg + up_dmg);
+        projectile.GetComponent<Projectile>().SetSpeed(projectile_s - up_spd);
 
         Vector3 scale = new Vector3(0.005f, 0.005f, 0.005f);
         projectile.transform.localScale = scale;

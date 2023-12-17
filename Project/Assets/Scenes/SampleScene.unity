@@ -1138,7 +1138,7 @@ MonoBehaviour:
   level_prefab: {fileID: 2128595823068580069, guid: b6f3efa7d4baaa445a9cb2c024de90be, type: 3}
   archer_prefab: {fileID: 385413893826048376, guid: 1ceef3eebc13ae34981d0e6719c25b82, type: 3}
   bomber_prefab: {fileID: 1001782946901213555, guid: ef3bd7e57aa0fba478f7b86d1508731c, type: 3}
-  indicator_prefab: {fileID: 1141045545476974440, guid: 31af1ed67a3ce5f46a6fdc3cb92c9406, type: 3}
+  up_indicator: {fileID: 4850895197784424900, guid: 63b2c4bde0f90c842a467ff59c36f5ef, type: 3}
 --- !u!1 &1617170084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatusFilter: 1
+  StatusFilter: 0
   UsePoseSmoothing: 0
   AnimationCurve:
     serializedVersion: 2

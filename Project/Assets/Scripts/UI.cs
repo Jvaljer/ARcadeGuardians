@@ -113,6 +113,8 @@ public class UI : MonoBehaviour{
             default:
                 break;
         }
+        detectpane.SetActive(false);
+        upgradechoosed.SetActive(false);
     }
 
     public void Launch(){
