@@ -31,6 +31,9 @@ public class Tower : MonoBehaviour{
                 reload_time = 0.85f;
                 break;
             case "bomber":
+                projectile_s = 0.125f;
+                base_dmg = 13f;
+                reload_time = 1.75f;
                 break;
             default:
                 break;

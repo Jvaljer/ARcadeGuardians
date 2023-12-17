@@ -103,16 +103,20 @@ public class UI : MonoBehaviour{
     }
     public void EndWave(){
         wave_running = false;
+        infopane.SetActive(true);
         waveend.SetActive(true);
     }
 
     public void NotEnoughGolds(){
         //must implement
     }
+    public void WaveOk(){
+        waveend.SetActive(false);
+        infopane.SetActive(false);
+    }
 
     //Some Setters
     public void SetGolds(int g){
-        Debug.Log("setting u pgolds to "+g);
         golds_txt.text = g.ToString();
     }
     public void SetWaves(int w){

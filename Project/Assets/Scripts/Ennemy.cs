@@ -68,7 +68,6 @@ public class Ennemy : MonoBehaviour{
         health_point -= d;
         if(health_point<=0){
             Destroy(gameObject);
-            GameObject.Find("ARCamera").GetComponent<Game>().Killed(typ);
         }
     }
     

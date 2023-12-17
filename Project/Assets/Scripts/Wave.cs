@@ -39,13 +39,13 @@ public class Wave : MonoBehaviour{
         }
         Debug.Log("we want "+ennemies_in+" ennemies");
         queue = new List<string>();
-        //we wanna have at least half of ennemies being goblins
+
         int half = ennemies_in / 2;
         queue.Add("w");
         int g_cnt = half;
         int w_cnt = 0;
+
         queue = new List<string>();
-        // Adjust counts based on the desired behavior
         for (int i = 0; i < half; i++) {
             queue.Add("g");
             float r = Random.Range(0f, 100f);

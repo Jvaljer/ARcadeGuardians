@@ -37,7 +37,7 @@ public class Game : MonoBehaviour{
     private Wave wave;
     private int wave_cnt = 0;
     private bool wave_just_ended = false;
-    private int out_cnt = -1;
+    private int reached = -1;
 
     //Update Method -> Testing the crucial predicates on each frames
     private void Update(){
@@ -47,15 +47,9 @@ public class Game : MonoBehaviour{
             }
             if(ingame_ui){
                 if(wave_running){
-                    if(out_cnt==0){
-                        Debug.Log("OUT_CNT IS NOW 0");
+                    if(GameObject.Find("Goblin(Clone)")==null && GameObject.Find("Wolf(Clone)")==null){
                         EndWave();
                     }
-                }
-                //refresh the ui texts of golds & waves
-                if(wave_just_ended){
-                    ui.GetComponent<UI>().SetWaves(wave_cnt);
-                    wave_just_ended = false;
                 }
             }
             if(wave_cnt>10){
@@ -68,22 +62,23 @@ public class Game : MonoBehaviour{
 
     //Game Logic Handling
     public void EnnemyReachedEnd(float damage){
-        out_cnt--;
         base_hp -= damage;
+        reached++;
     }
     public void LaunchWave(){
         //we wanna start a coroutine for the wave's progression
         wave_running = true;
         wave.Set(wave_cnt, difficulty, way_points, spawn_point, this);
         wave.Begin();
-        out_cnt = wave.EnnemiesAmount(); 
+        reached = 0;
     }
     public void EndWave(){
-        Debug.Log("wave has ended");
-        wave_just_ended = true;
+        wave_running = false;
         wave.Reset();
         ui.GetComponent<UI>().EndWave();
         wave_cnt++;
+        ui.GetComponent<UI>().SetWaves(wave_cnt);
+        golds += 100*wave_cnt - (10*reached);
     }
 
     //Settings Handling
@@ -119,6 +114,7 @@ public class Game : MonoBehaviour{
         ui.GetComponent<UI>().DetectLevel(level);
     }
     public void DetectTower(GameObject marker){
+        marker.transform.GetChild(0).gameObject.SetActive(true);
         if(wave_running){
             marker.SetActive(false);
             return;
@@ -164,12 +160,14 @@ public class Game : MonoBehaviour{
         Transform area = null;
         int index = -1;
         for(int i=0; i<areas.childCount; i++){
-            Vector3 area_pos = areas.GetChild(i).position;
-            float dist = Vector3.Distance(preview.transform.position, area_pos);
-            if(dist <= min){
-                area = areas.GetChild(i);
-                min = dist;
-                index = i;
+            if(!occupied[i]){
+                Vector3 area_pos = areas.GetChild(i).position;
+                float dist = Vector3.Distance(preview.transform.position, area_pos);
+                if(dist <= min){
+                    area = areas.GetChild(i);
+                    min = dist;
+                    index = i;
+                }
             }
         }
         bool not_enough = false;
@@ -179,14 +177,17 @@ public class Game : MonoBehaviour{
                     towers.Add( Instantiate(archer_prefab, area.position, area.rotation) );
                     golds -= archer_cost;
                 } else {
+                    Debug.Log("Not Enough to create ARCHER");
                     not_enough = true;
                 }
                 break;
             case "bomber":
                 if(bomber_cost<=golds){
+                    Debug.Log("Creating BOMBER");
                     towers.Add( Instantiate(bomber_prefab, area.position, area.rotation) );
-                    golds -= archer_cost;
+                    golds -= bomber_cost;
                 } else {
+                    Debug.Log("Not Enough to create BOMBER");
                     not_enough = true;
                 }
                 break;
@@ -200,22 +201,10 @@ public class Game : MonoBehaviour{
             towers[towers.Count-1].GetComponent<Tower>().Setup(area);
             not_placed = false;
         }
-    }
-    public void Killed(string ennemy){
-        out_cnt--;
-        switch(ennemy){
-            case "goblin":
-                golds += 25;
-                break;
-            case "wolf":
-                golds += 50;
-                break;
-            default:
-                break;
-        }
+        preview.transform.GetChild(0).gameObject.SetActive(false);
     }
     //Handling marker track loss
-    public void LooseTowerTrack(){
+    public void LooseTowerTrack(GameObject marker){
         //must implement
     }
     public void LooseLevelTrack(){
