@@ -77,7 +77,7 @@ public class Game : MonoBehaviour{
         ui.GetComponent<UI>().EndWave();
         wave_cnt++;
         ui.GetComponent<UI>().SetWaves(wave_cnt);
-        golds += 100*wave_cnt - (10*reached);
+        golds += 100 - (10*reached) + (wave_cnt*10);
     }
 
     //Settings Handling
@@ -131,8 +131,9 @@ public class Game : MonoBehaviour{
         marker.transform.GetChild(0).gameObject.SetActive(true);
         ui.GetComponent<UI>().DetectFireball(marker);
     }
-    public void DetectArrows(){
-        ui.GetComponent<UI>().DetectArrows();
+    public void DetectArrows(GameObject marker){
+        marker.transform.GetChild(0).gameObject.SetActive(true);
+        ui.GetComponent<UI>().DetectArrows(marker);
     }
 
     //UI Validation Handling
@@ -220,14 +221,43 @@ public class Game : MonoBehaviour{
             }
         }
         if(tower!=null){
-            tower.GetComponent<Tower>().Upgrade();
-            int up_lvl = tower.GetComponent<Tower>().level;
-            Vector3 up_pos = new Vector3(tower.transform.position.x, tower.transform.position.y+0.025f, tower.transform.position.z);
-            GameObject indicator = Instantiate(up_indicator, up_pos, tower.transform.rotation);
-            indicator.transform.localScale = new Vector3(0.0025f, 0.0025f, 0.0025f);
-            Debug.Log("tower level is "+up_lvl);
-            float x = up_pos.x+(up_lvl*0.0025f);
-            indicator.transform.position = new Vector3(x, up_pos.y, up_pos.z);
+            if(((tower.GetComponent<Tower>().level)+1)*75 <= golds){
+                tower.GetComponent<Tower>().Upgrade();
+                int up_lvl = tower.GetComponent<Tower>().level;
+                Vector3 up_pos = new Vector3(tower.transform.position.x, tower.transform.position.y+0.025f, tower.transform.position.z);
+                GameObject indicator = Instantiate(up_indicator, up_pos, tower.transform.rotation);
+                indicator.transform.localScale = new Vector3(0.0025f, 0.0025f, 0.0025f);
+                float x = up_pos.x+(up_lvl*0.0025f);
+                indicator.transform.position = new Vector3(x, up_pos.y, up_pos.z);
+                golds -= up_lvl*75;
+            }
+        }
+        marker.transform.GetChild(0).gameObject.SetActive(false);
+    }
+    public void ApplyArrowsUpgrade(GameObject marker){
+        float min = 100f;
+        GameObject tower = null;
+        for(int i=0; i<towers.Count; i++){
+            if(towers[i].GetComponent<Tower>().typ=="archer"){
+                Vector3 tower_pos = towers[i].transform.position;
+                float dist = Vector3.Distance(marker.transform.position, tower_pos);
+                if(dist <= min){
+                    tower = towers[i];
+                    min = dist;
+                }
+            }
+        }
+        if(tower!=null){
+            if(((tower.GetComponent<Tower>().level)+1)*75 <= golds){
+                tower.GetComponent<Tower>().Upgrade();
+                int up_lvl = tower.GetComponent<Tower>().level;
+                Vector3 up_pos = new Vector3(tower.transform.position.x, tower.transform.position.y+0.025f, tower.transform.position.z);
+                GameObject indicator = Instantiate(up_indicator, up_pos, tower.transform.rotation);
+                indicator.transform.localScale = new Vector3(0.0025f, 0.0025f, 0.0025f);
+                float x = up_pos.x+(up_lvl*0.0025f);
+                indicator.transform.position = new Vector3(x, up_pos.y, up_pos.z);
+                golds -= up_lvl*75;
+            }
         }
         marker.transform.GetChild(0).gameObject.SetActive(false);
     }

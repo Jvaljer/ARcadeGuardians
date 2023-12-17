@@ -18,7 +18,7 @@ public class Tower : MonoBehaviour{
     private float base_dmg;
     private float reload_time;
     public int level = 0;
-    private int up_dmg = 0;
+    private float up_dmg = 0f;
     private float up_spd = 0f;
 
     public void Setup(Transform tr){
@@ -44,16 +44,15 @@ public class Tower : MonoBehaviour{
     }
 
     public void Upgrade(){
-        Debug.Log("this is the "+(level+1)+"th level for this tower");
         level++;
         switch(typ){
             case "archer":
-                up_dmg += 4;
-                up_spd += 0.25f;
+                up_dmg += 4f;
+                up_spd += 0.125f;
                 break;
             case "bomber":
-                up_dmg += 6;
-                up_spd += 0.125f;
+                up_dmg += 6f;
+                up_spd += 0.2f;
                 break;
             default:
                 break;
@@ -63,10 +62,17 @@ public class Tower : MonoBehaviour{
     //Shoot Handling
     public void FireProjectileAt(Collider target){
         var projectile = Instantiate(projectile_prefab, launch_point.position, launch_point.rotation);
-        projectile.GetComponent<Projectile>().SetDamage(base_dmg + up_dmg);
-        projectile.GetComponent<Projectile>().SetSpeed(projectile_s - up_spd);
+        float dmg = base_dmg + up_dmg;
 
-        Vector3 scale = new Vector3(0.005f, 0.005f, 0.005f);
+        projectile.GetComponent<Projectile>().SetDamage(dmg);
+        projectile.GetComponent<Projectile>().SetSpeed(projectile_s);
+
+        Vector3 scale;
+        if(typ=="archer"){
+            scale = new Vector3(0.0025f, 0.0025f, 0.0025f);
+        } else {
+            scale = new Vector3(0.0035f, 0.0035f, 0.0035f);
+        }
         projectile.transform.localScale = scale;
 
         //now we wanna make it go to the given target
@@ -75,7 +81,8 @@ public class Tower : MonoBehaviour{
     }
 
     private IEnumerator Reload(GameObject range){
-        yield return new WaitForSeconds(reload_time);
+        float reload = reload_time - up_spd;
+        yield return new WaitForSeconds(reload);
         range.GetComponent<Range>().Reload();
     }
     private IEnumerator Shoot(GameObject projectile, GameObject target){

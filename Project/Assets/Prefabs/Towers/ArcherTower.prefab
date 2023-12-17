@@ -52,6 +52,7 @@ MonoBehaviour:
   launch_point: {fileID: 4872558234608450534}
   projectile_prefab: {fileID: 8785208512009593403, guid: 9300441703b0f15459fcf35252528e8a, type: 3}
   typ: archer
+  level: 0
 --- !u!1 &769060956893828823
 GameObject:
   m_ObjectHideFlags: 0

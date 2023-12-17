@@ -70,9 +70,10 @@ public class UI : MonoBehaviour{
         marker = "fireball";
         tmp_marker = f_marker;
     }
-    public void DetectArrows(){
+    public void DetectArrows(GameObject f_marker){
         choice.SetActive(true);
         marker = "arrows";
+        tmp_marker = f_marker;
     }
 
     //Ignoring Handling
@@ -87,7 +88,9 @@ public class UI : MonoBehaviour{
         current_tower = null; //wanna destroy or set to null ???
     }
     public void IgnoreUpgrade(){
-        //must implement
+        detectpane.SetActive(false);
+        upgradechoosed.SetActive(false);
+        tmp_marker = null;
     }
 
     //Validating Methods
@@ -109,6 +112,7 @@ public class UI : MonoBehaviour{
                 game.ApplyFireUpgrade(tmp_marker);
                 break;
             case "arrows":
+                game.ApplyArrowsUpgrade(tmp_marker);
                 break;
             default:
                 break;
@@ -125,6 +129,7 @@ public class UI : MonoBehaviour{
     }
     public void LaunchNextWave(){
         if(wave_running){
+            Debug.Log("WAVE RUNNING");
             return;
         }
         game.LaunchWave();

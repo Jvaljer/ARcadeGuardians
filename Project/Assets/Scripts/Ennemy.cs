@@ -40,11 +40,11 @@ public class Ennemy : MonoBehaviour{
     public void SetEntity(string category){
         switch(category){
             case "goblin":
-                health_point = 30f;
+                health_point = 45f;
                 move_refresh = 0.05f;
                 break;
             case "wolf":
-                health_point = 18f;
+                health_point = 28f;
                 move_refresh = 0.025f;
                 break;
             default:
