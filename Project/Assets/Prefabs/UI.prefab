@@ -229,7 +229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &760984650729280749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1822,11 +1822,11 @@ RectTransform:
   m_Children:
   - {fileID: 6783359906705041980}
   m_Father: {fileID: 3044624092465808905}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -75, y: -100}
+  m_AnchoredPosition: {x: -75, y: -110.43}
   m_SizeDelta: {x: 93.3942, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &467221312273690612
@@ -2316,7 +2316,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You now have 2 possibilities, either use it as an UPGRAFE, or as a SPELL.
+  m_Text: You now have 2 possibilities, either use it to cqst an UPGRADE, or a SPELL.
 --- !u!1 &1233860865776739397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3132,7 +3132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5218426193528128852
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3752,7 +3752,7 @@ RectTransform:
   m_Children:
   - {fileID: 2140881205139946287}
   m_Father: {fileID: 3044624092465808905}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4043,11 +4043,11 @@ RectTransform:
   m_Children:
   - {fileID: 2544259985747212586}
   m_Father: {fileID: 3044624092465808905}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 72, y: -100}
+  m_AnchoredPosition: {x: 73, y: -110.43}
   m_SizeDelta: {x: 87.3389, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2661422131031680938
@@ -4144,6 +4144,88 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &3036745933395115624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102539739112068884}
+  - component: {fileID: 1418478657658178865}
+  - component: {fileID: 4038147426884665298}
+  m_Layer: 5
+  m_Name: Rules Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1102539739112068884
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036745933395115624}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3044624092465808905}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -9.3486}
+  m_SizeDelta: {x: 458.6393, y: 161.3855}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1418478657658178865
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036745933395115624}
+  m_CullTransparentMesh: 1
+--- !u!114 &4038147426884665298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036745933395115624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: In order to win thsi game, you will need to survive for 10 waves. Using
+    the golds you've earned to summon towers, upgrades and spells. If the ennemies
+    reachs the end of the map, they deal some damages to you. If your HP fall down
+    to 0, then you loose the game...
 --- !u!1 &3146259216566336390
 GameObject:
   m_ObjectHideFlags: 0
@@ -6193,7 +6275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3044624092465808905
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6210,6 +6292,8 @@ RectTransform:
   - {fileID: 4965941846447385902}
   - {fileID: 3403881479377113660}
   - {fileID: 7149929940898711591}
+  - {fileID: 3037302327888264708}
+  - {fileID: 1102539739112068884}
   - {fileID: 1894001371309898023}
   - {fileID: 1226312191994539754}
   - {fileID: 7214122564738226157}
@@ -6265,7 +6349,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4590764957474649869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6301,6 +6385,8 @@ MonoBehaviour:
   level_txt: {fileID: 4530662702105335229}
   tower_txt: {fileID: 5156231869277004561}
   gold_txt: {fileID: 8524432080722222108}
+  spell_up_text: {fileID: 7644250911990021563}
+  rules_text: {fileID: 3036745933395115624}
   ready_txt: {fileID: 6581536654601013294}
   ok_btn: {fileID: 2699387924689662666}
   next_btn: {fileID: 807559397712597005}
@@ -6453,7 +6539,7 @@ GameObject:
   - component: {fileID: 3049897478879128435}
   - component: {fileID: 4426219090705598762}
   m_Layer: 5
-  m_Name: Wave Ended
+  m_Name: PolyMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6525,7 +6611,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4426219090705598762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6755,7 +6841,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3044624092465808905}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7690,6 +7776,87 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &7644250911990021563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3037302327888264708}
+  - component: {fileID: 4414632518873005524}
+  - component: {fileID: 4808437522184329534}
+  m_Layer: 5
+  m_Name: Spell & Upgrade Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &3037302327888264708
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7644250911990021563}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3044624092465808905}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.000030518}
+  m_SizeDelta: {x: 458.6393, y: 131.92}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4414632518873005524
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7644250911990021563}
+  m_CullTransparentMesh: 1
+--- !u!114 &4808437522184329534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7644250911990021563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Thanks to these golds, you'll be able to additionnaly cast spells & upgrades
+    onto the battlefield. \nIn order to do that you can just place the related marker
+    inside of camera field then validate its position."
 --- !u!1 &7795975086676588788
 GameObject:
   m_ObjectHideFlags: 0

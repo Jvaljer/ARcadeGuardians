@@ -9,6 +9,8 @@ public class TutoUI : MonoBehaviour{
     public GameObject level_txt;
     public GameObject tower_txt;
     public GameObject gold_txt;
+    public GameObject spell_up_text;
+    public GameObject rules_text;
     public GameObject ready_txt;
     public GameObject ok_btn;
     public GameObject next_btn;
@@ -38,6 +40,17 @@ public class TutoUI : MonoBehaviour{
 
             case "gold":
                 gold_txt.SetActive(false);
+                current = "spell";
+                spell_up_text.SetActive(true);
+                break;
+
+            case "spell":
+                spell_up_text.SetActive(false);
+                current = "rules";
+                rules_text.SetActive(true);
+                break;
+            case "rules":
+                rules_text.SetActive(false);
                 current = "ready";
                 ready_txt.SetActive(true);
                 next_btn.SetActive(false);
@@ -66,6 +79,14 @@ public class TutoUI : MonoBehaviour{
 
             case "gold":
                 gold_txt.SetActive(false);
+                break;
+
+            case "spell":
+                spell_up_text.SetActive(false);
+                break;
+
+            case "rules":
+                rules_text.SetActive(false);
                 break;
 
             default:

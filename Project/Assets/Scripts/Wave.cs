@@ -25,13 +25,13 @@ public class Wave : MonoBehaviour{
 
         switch(diff){
             case "easy":
-                ennemies_in = 10+ (3*cpt);
+                ennemies_in = 13+ (5*cpt);
                 break;
             case "medium":
-                ennemies_in = 12+ (4*cpt);
+                ennemies_in = 18+ (7*cpt);
                 break;
             case "hard":
-                ennemies_in = 15+ (5*cpt);
+                ennemies_in = 25+ (10*cpt);
                 break;
             default:
                 ennemies_in = -1;
