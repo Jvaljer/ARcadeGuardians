@@ -5,10 +5,10 @@ This project takes place in a class I attend at my HCI Master, Mixed Reality &am
   As this project takes place in vuforia, we decided to use Image Targets, recognized by the program as markers, here are some precisions about these
   #List
     - One Level Marker, that represents the level the user is gonna play on
-    - Two Tower Markers, that each allow the user to select the type of tower he wanna place on the map, plus he can use the marker position to modify its position
+    - Two Tower Markers, that each allow the user to select the type of tower he wanna place on the map, plus he can use the marker position to modify its position.
       * Archer
       * Bomber 
-    - Two Upgrade Markers, each allowing to upgrade some stats on related tower
+    - Two Upgrade Markers, each allowing to upgrade some stats on related tower. These markers also serve the user when he wanna cast a spell on the map, by selecting the Spell option on the offered choice.
       * Fire Upgrade (for bomber)
       * Arrow Upgrade (for archer)
   #Design
@@ -23,6 +23,8 @@ This project takes place in a class I attend at my HCI Master, Mixed Reality &am
     - Wave Launching
     - Level Choice + positionning
     - UI selections
+    - Spells Casting on the map
+    - Recognition of closest item on which user can place the related item.
     
 ## UI
   The UI mainly serves as an information holder, but we've decided to include as many clarifications and helps inside of it, in order to make the user experience easier and as interactive as possible.
