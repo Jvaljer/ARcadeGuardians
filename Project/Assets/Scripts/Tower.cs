@@ -52,7 +52,7 @@ public class Tower : MonoBehaviour{
                 break;
             case "bomber":
                 up_dmg += 6f;
-                up_spd += 0.2f;
+                up_spd += 0.15f;
                 break;
             default:
                 break;
@@ -91,6 +91,9 @@ public class Tower : MonoBehaviour{
             Vector3 dir = (target.transform.position - projectile.transform.position).normalized;
             projectile.transform.position += dir * script.Speed() * Time.deltaTime;
             yield return new WaitForSeconds(0.05f);
+            if(target==null){
+                Destroy(projectile);
+            }
         }
         Destroy(projectile);
     }

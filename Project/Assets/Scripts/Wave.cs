@@ -105,6 +105,20 @@ public class Wave : MonoBehaviour{
             yield return new WaitForSeconds(nxt_ennemy);
         }
         queue.Clear();
+
+        /*GameObject next;
+        next = Instantiate(wolf, spawn.position, Quaternion.identity);
+        next.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
+        next.GetComponent<Ennemy>().SetEntity("wolf");
+        next.GetComponent<Ennemy>().SetWayPoints(way);
+        next.GetComponent<Ennemy>().Travel();
+
+        GameObject next_;
+        next_ = Instantiate(goblin, spawn.position, Quaternion.identity);
+        next_.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
+        next_.GetComponent<Ennemy>().SetEntity("goblin");
+        next_.GetComponent<Ennemy>().SetWayPoints(way);
+        next_.GetComponent<Ennemy>().Travel();*/
         yield return new WaitForSeconds(5f);
     }
 }

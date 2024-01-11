@@ -8,6 +8,7 @@ public class Ennemy : MonoBehaviour{
     private float health_point;
     private bool on_fire = false;
     private bool arrows_on = false;
+    private string cat = "";
 
     public void Travel(){
         StartCoroutine(MoveAll());
@@ -44,10 +45,12 @@ public class Ennemy : MonoBehaviour{
             case "goblin":
                 health_point = 45f;
                 move_refresh = 0.05f;
+                cat = "GOBLIN";
                 break;
             case "wolf":
                 health_point = 28f;
                 move_refresh = 0.025f;
+                cat = "WOLF";
                 break;
             default:
                 break;
@@ -73,6 +76,7 @@ public class Ennemy : MonoBehaviour{
     }
 
     public void FireAffected(float dmg){
+        Debug.Log("entered fire");
         on_fire = true;
         StartCoroutine(FireDamage(dmg));
     }
@@ -86,6 +90,7 @@ public class Ennemy : MonoBehaviour{
         }
     }
     public void FireHealed(){
+        Debug.Log("exited fire");
         on_fire = false;
     }
 

@@ -71,6 +71,7 @@ public class Game : MonoBehaviour{
 
     //Game Logic Handling
     public void EnnemyReachedEnd(float damage){
+        Debug.Log("taking damages "+damage+" on ennemy "+reached);
         base_hp -= damage;
         reached++;
     }
