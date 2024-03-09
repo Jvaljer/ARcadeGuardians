@@ -17,7 +17,15 @@ public class UI_Start : MonoBehaviour{
     public GameObject selection;
     public GameObject on;
     public GameObject off;
+    public GameObject display;
     public GameObject scale;
+
+    //other attributes
+    private int level = 0;
+    private int lvl_cnt = 1;
+    public GameObject lvl0;
+    public GameObject lvl1;
+
 
     void Start(){
         //must implement
@@ -43,6 +51,23 @@ public class UI_Start : MonoBehaviour{
                 break;
         }
     }
+    public void DisplayLevel(){
+        Debug.Log("we have level: "+level);
+        switch(level){
+            case 0:
+                lvl0.SetActive(true);
+                lvl1.SetActive(false);
+                break;
+            case 1:
+                lvl0.SetActive(false);
+                lvl1.SetActive(true);
+                break;
+            default:
+                lvl0.SetActive(false);
+                lvl1.SetActive(false);
+                break;
+        }
+    }
 
     public void ClickDiffOK(){
         difficulty.SetActive(false);
@@ -51,12 +76,29 @@ public class UI_Start : MonoBehaviour{
     }
 
     public void TrackLevel(bool b){
-        Debug.Log("Inner UI Script got level: "+b);
         if(b){
             on.SetActive(true);
             off.SetActive(false);
+            display.SetActive(true);
+            return;
         }
         on.SetActive(false);
         off.SetActive(true);
+        //display.SetActive(false);
+    }
+
+    public void Next(){
+        level++;
+        if(level>lvl_cnt){
+            level = 0;
+        }
+        DisplayLevel();
+    }
+    public void Previous(){
+        level--;
+        if(level<0){
+            level = lvl_cnt;
+        }
+        DisplayLevel();
     }
 }

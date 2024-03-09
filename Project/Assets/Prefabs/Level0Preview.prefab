@@ -1973,7 +1973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4703515173384814949}
   m_Layer: 0
-  m_Name: LevelPreview
+  m_Name: Level0Preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
