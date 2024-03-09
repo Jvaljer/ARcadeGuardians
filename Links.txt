@@ -1,7 +1,0 @@
-Below you can find both the demo video on Youtube and the source code in the Github Repository.
-
-Demo Video on Youtube: 
-	https://youtu.be/y3yB_5_DmSQ
-
-Github Repo Link (made public): 
-	https://github.com/Jvaljer/ARcadeGuardians
