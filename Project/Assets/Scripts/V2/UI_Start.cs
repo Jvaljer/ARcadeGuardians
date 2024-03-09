@@ -15,14 +15,15 @@ public class UI_Start : MonoBehaviour{
     public GameObject difficulty;
     public Text info;
     public GameObject selection;
+    public GameObject on;
+    public GameObject off;
     public GameObject scale;
 
     void Start(){
-        //here we might wanna reset to the first state ?
+        //must implement
     }
 
     public void ClickDiff(string str){
-        Debug.Log("clicked on difficulty: "+str);
         difficulty_ = str;
         Display(str);
     }
@@ -47,5 +48,15 @@ public class UI_Start : MonoBehaviour{
         difficulty.SetActive(false);
         game.SetDifficulty(difficulty_);
         selection.SetActive(true);
+    }
+
+    public void TrackLevel(bool b){
+        Debug.Log("Inner UI Script got level: "+b);
+        if(b){
+            on.SetActive(true);
+            off.SetActive(false);
+        }
+        on.SetActive(false);
+        off.SetActive(true);
     }
 }

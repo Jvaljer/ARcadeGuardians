@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Game2 : MonoBehaviour{
     private string difficulty = "none";
+    public UI2 ui;
 
     void Start(){
         //must implement
@@ -16,4 +17,14 @@ public class Game2 : MonoBehaviour{
     public void SetDifficulty(string diff){
         difficulty = diff;
     }
+
+    //Images Target Detection
+    public void DetectLevel(){
+        Debug.Log("Game Detected Level");
+        ui.TrackLevel(true);
+    }
+    public void LooseLevel(){
+        ui.TrackLevel(false);
+    }
+
 }

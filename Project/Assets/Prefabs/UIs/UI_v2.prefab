@@ -6295,6 +6295,8 @@ MonoBehaviour:
   difficulty: {fileID: 8737007495803791615}
   info: {fileID: 4973012092860124708}
   selection: {fileID: 8762782326328167033}
+  on: {fileID: 8293817992587271437}
+  off: {fileID: 75460944591549049}
   scale: {fileID: 3794584553740012729}
 --- !u!1 &5641886534628061054
 GameObject:

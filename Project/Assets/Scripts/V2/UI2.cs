@@ -44,4 +44,9 @@ public class UI2 : MonoBehaviour{
                 break;
         }
     }
+
+    public void TrackLevel(bool track){
+        Debug.Log("UI got Level: "+track);
+        Start_Pane.transform.GetComponent<UI_Start>().TrackLevel(track);
+    }
 }
