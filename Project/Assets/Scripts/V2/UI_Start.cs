@@ -19,6 +19,7 @@ public class UI_Start : MonoBehaviour{
     public GameObject off;
     public GameObject display;
     public GameObject scale;
+    public Slider slider;
 
     //other attributes
     private int level = 0;
@@ -74,6 +75,18 @@ public class UI_Start : MonoBehaviour{
         game.SetDifficulty(difficulty_);
         selection.SetActive(true);
     }
+    public void ClickSelectOK(){
+        selection.SetActive(false);
+        game.SetLevel(level);
+        scale.SetActive(true);
+        slider.onValueChanged.AddListener(delegate { SliderValueChange(); });
+    }
+    public void ClickLaunch(){
+        scale.SetActive(false);
+        game.Init();
+        ui.Disable(0);
+        ui.Enable(1);
+    }
 
     public void TrackLevel(bool b){
         if(b){
@@ -100,5 +113,10 @@ public class UI_Start : MonoBehaviour{
             level = lvl_cnt;
         }
         DisplayLevel();
+    }
+
+    public void SliderValueChange(){
+        float value = slider.value;
+        Debug.Log("now slider value is: "+value);
     }
 }
