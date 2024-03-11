@@ -14,6 +14,8 @@ public class Game2 : MonoBehaviour{
     public GameObject lvl0;
     public GameObject lvl1;
 
+    //Testing purposes
+    public GameObject test_go;
 
     void Update(){
         //must implement
@@ -28,7 +30,6 @@ public class Game2 : MonoBehaviour{
         difficulty = diff;
     }
     public void SetLevel(int i){
-        //must implement
         switch(i){
             case 0:
                 lvl0.SetActive(true);
@@ -39,6 +40,9 @@ public class Game2 : MonoBehaviour{
             default:
                 break;
         }
+    }
+    public void ScaleLevel(float val){
+        lvl0.transform.localScale = new Vector3(val, 0f, val); //STILL NEED TO TEST
     }
 
     //Images Target Detection

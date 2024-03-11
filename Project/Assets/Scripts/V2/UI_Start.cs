@@ -118,5 +118,7 @@ public class UI_Start : MonoBehaviour{
     public void SliderValueChange(){
         float value = slider.value;
         Debug.Log("now slider value is: "+value);
+        //still need to test the scaling
+        game.ScaleLevel(value);
     }
 }

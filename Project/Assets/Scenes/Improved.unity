@@ -459,7 +459,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2078361014685572389, guid: b6f3efa7d4baaa445a9cb2c024de90be, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2078361014685572389, guid: b6f3efa7d4baaa445a9cb2c024de90be, type: 3}
       propertyPath: m_LocalScale.x
@@ -550,7 +550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8506043020960019262, guid: 9022cda208f4f8944b7c0062f96f27ca, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8506043020960019262, guid: 9022cda208f4f8944b7c0062f96f27ca, type: 3}
       propertyPath: m_LocalScale.x
@@ -1017,6 +1017,7 @@ MonoBehaviour:
   ui: {fileID: 898109285}
   lvl0: {fileID: 1182523691}
   lvl1: {fileID: 1188180938}
+  test_go: {fileID: 0}
 --- !u!4 &1585373442
 Transform:
   m_ObjectHideFlags: 0
