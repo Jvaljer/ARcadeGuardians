@@ -9,13 +9,11 @@ public class Game2 : MonoBehaviour{
     //Level's Tracking & DIsplay
     private GameObject level;
     private GameObject lvl_mark;
+    private int lvl = -1;
 
     //Levels Prefab
     public GameObject lvl0;
     public GameObject lvl1;
-
-    //Testing purposes
-    public GameObject test_go;
 
     void Update(){
         //must implement
@@ -30,7 +28,8 @@ public class Game2 : MonoBehaviour{
         difficulty = diff;
     }
     public void SetLevel(int i){
-        switch(i){
+        lvl = i;
+        switch(lvl){
             case 0:
                 lvl0.SetActive(true);
                 break;
@@ -42,7 +41,17 @@ public class Game2 : MonoBehaviour{
         }
     }
     public void ScaleLevel(float val){
-        lvl0.transform.localScale = new Vector3(val, 0f, val); //STILL NEED TO TEST
+        Vector3 scale = new Vector3(val/10f, 0.1f, val/10f);
+        switch(lvl){
+            case 0:
+                lvl0.transform.localScale = scale;
+                break;
+            case 1:
+                lvl1.transform.localScale = scale;
+                break;
+            default:
+                break;
+        }
     }
 
     //Images Target Detection
