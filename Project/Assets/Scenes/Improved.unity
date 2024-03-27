@@ -1017,7 +1017,6 @@ MonoBehaviour:
   ui: {fileID: 898109285}
   lvl0: {fileID: 1182523691}
   lvl1: {fileID: 1188180938}
-  test_go: {fileID: 0}
 --- !u!4 &1585373442
 Transform:
   m_ObjectHideFlags: 0
@@ -1192,6 +1191,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 574048764197866590, guid: 7e19a83c27cec324ca399d2c43bf8ea1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1308243605866557354, guid: 7e19a83c27cec324ca399d2c43bf8ea1, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 4.767273
@@ -1203,6 +1206,26 @@ PrefabInstance:
     - target: {fileID: 4774931542602670090, guid: 7e19a83c27cec324ca399d2c43bf8ea1, type: 3}
       propertyPath: m_Maskable
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487202248602583135, guid: 7e19a83c27cec324ca399d2c43bf8ea1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5600591619003062202, guid: 7e19a83c27cec324ca399d2c43bf8ea1, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5600591619003062202, guid: 7e19a83c27cec324ca399d2c43bf8ea1, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5600591619003062202, guid: 7e19a83c27cec324ca399d2c43bf8ea1, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5600591619003062202, guid: 7e19a83c27cec324ca399d2c43bf8ea1, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6544229510493586502, guid: 7e19a83c27cec324ca399d2c43bf8ea1, type: 3}
       propertyPath: game

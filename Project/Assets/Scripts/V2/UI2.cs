@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UI2 : MonoBehaviour{
+    //Game Components
+    public GameObject game;
+
+    //UI Components
     public GameObject Start_Pane; // 0
     public GameObject Tuto_Pane; // 1
     public GameObject Game_Pane; // 2
@@ -48,5 +52,8 @@ public class UI2 : MonoBehaviour{
     public void TrackLevel(bool track){
         Debug.Log("UI got Level: "+track);
         Start_Pane.transform.GetComponent<UI_Start>().TrackLevel(track);
+    }
+    public void LaunchGame(){
+        game.GetComponent<Game2>().Init();
     }
 }
